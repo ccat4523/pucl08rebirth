@@ -16,20 +16,21 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     
+    <!-- 瀏覽器分頁小圖標 Favicon -->
     <link rel="icon" type="image/png" href="images/sss.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Noto Sans TC', 'Noto Serif TC', sans-serif; }
-        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .animate-float { animation: float 5s ease-in-out infinite; }
         .animate-bounce { animation: bounce 2s infinite; }
-        .nav-glass { background: rgba(245, 241, 232, 0.95); backdrop-filter: blur(10px); }
+        .nav-glass { background: rgba(245, 241, 232, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .work-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.02); }
-        .image-placeholder { background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); display: flex; align-items: center; justify-content: center; color: #8b7355; }
-        .share-btn { transition: transform 0.2s ease; }
+        .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
+        .image-placeholder { background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); display: flex; align-items: center; justify-content: center; color: #8b7355; font-size: 14px; }
+        .share-btn { transition: all 0.2s ease; cursor: pointer; }
         .share-btn:hover { transform: scale(1.05); }
         @media (max-width: 768px) {
             .work-card h3 { font-size: 1rem; }
@@ -37,7 +38,7 @@
         }
     </style>
 </head>
-<body style="background:#e8dfd2; background-image:url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size:cover; background-attachment:fixed;">
+<body style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
 
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
@@ -45,29 +46,31 @@
             <div class="flex items-center justify-between h-16">
                 <a href="#" class="flex items-center gap-2">
                     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/rebirth_logo-c8LpyDDQYCvN6mnMZq8oV7.webp" alt="蛻生" class="w-9 h-9 object-contain">
-                    <span class="text-base font-bold hidden sm:inline" style="color:#1a3a3a;">蛻生</span>
+                    <span class="text-base font-bold hidden sm:inline" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a;">蛻生</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#" class="hover:text-accent font-medium" style="color:#1a3a3a;">主頁</a>
-                    <a href="#info" class="hover:text-accent font-medium" style="color:#1a3a3a;">展覽資訊</a>
-                    <a href="#works" class="hover:text-accent font-medium" style="color:#1a3a3a;">作品展示</a>
-                    <div class="flex gap-2">
-                        <button onclick="shareToLINE()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium" style="background:#00b900; color:white;">LINE</button>
-                        <button onclick="copyPageLink()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium" style="background:#8b7355; color:white;">複製連結</button>
+                    <a href="#" class="transition-colors hover:text-accent font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">主頁</a>
+                    <a href="#info" class="transition-colors hover:text-accent font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">展覽資訊</a>
+                    <a href="#works" class="transition-colors hover:text-accent font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">作品展示</a>
+                    <div class="flex items-center gap-2">
+                        <button onclick="shareToLINE()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #00b900; color: white;">LINE</button>
+                        <button onclick="copyPageLink()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #8b7355; color: white;">複製連結</button>
                     </div>
                 </div>
-                <div class="md:hidden flex gap-2">
-                    <button onclick="shareToLINE()" class="share-btn px-2 py-1 rounded-md text-xs" style="background:#00b900; color:white;">LINE</button>
-                    <button onclick="copyPageLink()" class="share-btn px-2 py-1 rounded-md text-xs" style="background:#8b7355; color:white;">複製</button>
-                    <button id="menuBtn" class="p-2" style="color:#1a3a3a;"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <div class="md:hidden flex items-center gap-2">
+                    <button onclick="shareToLINE()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #00b900; color: white;">LINE</button>
+                    <button onclick="copyPageLink()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #8b7355; color: white;">複製</button>
+                    <button id="menuBtn" class="p-2" style="color: #1a3a3a;">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
                 </div>
             </div>
         </div>
-        <div id="mobileMenu" class="md:hidden hidden border-t" style="background:rgba(245,241,232,0.98); border-top:1px solid rgba(212,175,55,0.2);">
+        <div id="mobileMenu" class="md:hidden hidden border-t" style="background: rgba(245, 241, 232, 0.98); border-top: 1px solid rgba(212, 175, 55, 0.2);">
             <div class="px-4 py-3 space-y-3">
-                <a href="#" class="block py-2" onclick="closeMobileMenu()">主頁</a>
-                <a href="#info" class="block py-2" onclick="closeMobileMenu()">展覽資訊</a>
-                <a href="#works" class="block py-2" onclick="closeMobileMenu()">作品展示</a>
+                <a href="#" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">主頁</a>
+                <a href="#info" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">展覽資訊</a>
+                <a href="#works" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">作品展示</a>
             </div>
         </div>
     </nav>
@@ -87,66 +90,94 @@
         });
     </script>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 px-4" style="background:linear-gradient(180deg, rgba(212,197,176,0.7) 0%, rgba(212,197,176,0.5) 50%, rgba(212,197,176,0.7) 100%);">
-        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-2xl">
-            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/hands_butterfly-82t2QECvULcYdbgUGVUnLa.webp" class="w-full object-contain animate-float">
+    <!-- ===== HERO SECTION (完整保留展覽資訊框) ===== -->
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 px-4" style="background: linear-gradient(180deg, rgba(212, 197, 176, 0.7) 0%, rgba(212, 197, 176, 0.5) 50%, rgba(212, 197, 176, 0.7) 100%);">
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/hands_butterfly-82t2QECvULcYdbgUGVUnLa.webp" alt="手中的蝴蝶" class="w-full object-contain animate-float">
         </div>
-        <div class="relative z-10 text-center mt-32 sm:mt-40">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="color:#5a4a3a; letter-spacing:0.15em;">蛻　生</h1>
-            <p class="text-lg sm:text-xl md:text-2xl mb-8" style="color:#8b7355;">靜宜大學中國文學系第八屆畢業展覽</p>
-            <p class="mt-12 max-w-2xl italic text-sm sm:text-base" style="color:#6b5d4f;">「一千五百個日升中，指尖已結出新繭；而當遍撤的種子萌芽，我將振翅高飛。」</p>
+        <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em;">蛻　生</h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 300; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
+            
+            <!-- 展覽資訊框（完整保留） -->
+            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+                <div class="absolute -top-3 -left-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
+                <div class="absolute -bottom-3 -right-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
+                <div class="space-y-6 text-center">
+                    <div class="pb-4 border-b-2 border-gray-200">
+                        <p style="color: #8b7355; font-weight: 600;">展覽日期</p>
+                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">2026年5月12日（二）– 5月14日（四）</p>
+                    </div>
+                    <div class="pb-4 border-b-2 border-gray-200">
+                        <p style="color: #8b7355; font-weight: 600;">🕙 開放時間</p>
+                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">09:00 – 16:00</p>
+                    </div>
+                    <div>
+                        <p style="color: #8b7355; font-weight: 600;">📍 展覽地點</p>
+                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">靜宜大學宜園餐廳樓上iDO培力基地</p> 
+                    </div>
+                    <div>
+                        <p style="color: #8b7355; font-weight: 600;">🏫 展覽地址</p>
+                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
+
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-12 max-w-2xl italic text-sm sm:text-base" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">「一千五百個日升中，指尖已結出新繭；而當遍撤的種子萌芽，我將振翅高飛。」</p>
         </div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6" style="color:#5a4a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6" style="color: #5a4a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </section>
 
-    <!-- Info Section -->
-    <section id="info" class="py-20 px-4" style="background:linear-gradient(180deg, rgba(232,223,210,0.6) 0%, rgba(232,223,210,0.8) 100%);">
+    <!-- ===== INFO SECTION ===== -->
+    <section id="info" class="py-20 px-4" style="background: linear-gradient(180deg, rgba(232, 223, 210, 0.6) 0%, rgba(232, 223, 210, 0.8) 100%);">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8" style="color:#5a4a3a;">關於「蛻生」</h2>
-            <div class="p-6 sm:p-8 rounded-sm" style="background:rgba(255,255,255,0.85); border:2px solid #8b7355;">
-                <p class="leading-relaxed"><span style="font-size:1.2rem; font-weight:600;">蛻，從經驗深處，綻放新生。</span></p>
-                <p class="mt-4">與昆蟲不同，哺乳類無法經歷自然定義上的蛻變；然而，人類創造了「蛻」，用以指涉那些無聲發生的心靈成長。</p>
-                <p class="mt-4">在進入中文系之前，乃至其後，我們皆曾掙扎，在自然與社會的天擇之中匍匐前行。而無論選擇哪一條道路，終將走向屬於自己的羽化時刻。</p>
-                <p class="mt-4">我們在此凝聚養分，蟄伏著替自己撐起堅硬的外殼，並在漫長的時日裡，不斷吸收來自外界的碰撞與滋養，等待時機成熟。</p>
-                <p class="mt-4">無人能預知毛毛蟲將展現何種花紋。當別人投來目光時，我們早已在暗處，為飛翔做足準備。</p>
-                <p class="mt-4">為了證明而蛻，為了嚮往而生。</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">關於「蛻生」</h2>
+            <div class="p-6 sm:p-8 rounded-sm" style="background: rgba(255, 255, 255, 0.85); border: 2px solid #8b7355;">
+                <p class="text-sm sm:text-base leading-relaxed" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;"><span style="font-size: 1.2rem; font-weight: 600; color: #5a4a3a;">蛻，從經驗深處，綻放新生。</span></p>
+                <p class="text-sm sm:text-base leading-relaxed mt-4" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">與昆蟲不同，哺乳類動物無法經歷自然定義上的蛻變；然而，人類創造了「蛻」，用以指涉那些無聲發生的心靈成長。</p>
+                <p class="text-sm sm:text-base leading-relaxed mt-4" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">在進入中文系之前，乃至其後，我們皆曾掙扎，在自然與社會的天擇之中匍匐前行。而無論選擇哪一條道路，終將走向屬於自己的羽化時刻。</p>
+                <p class="text-sm sm:text-base leading-relaxed mt-4" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">我們在此凝聚養分，蟄伏著替自己撐起堅硬的外殼，並在漫長的時日裡，不斷吸收來自外界的碰撞與滋養，等待時機成熟。</p>
+                <p class="text-sm sm:text-base leading-relaxed mt-4" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">無人能預知毛毛蟲將展現何種花紋。當別人投來目光時，我們早已在暗處，為飛翔做足準備。</p>
+                <p class="text-sm sm:text-base leading-relaxed mt-4" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">為了證明而蛻，為了嚮往而生。</p>
             </div>
         </div>
     </section>
 
-    <!-- Works Section -->
-    <section id="works" class="py-20 px-4" style="background:linear-gradient(180deg, rgba(232,223,210,0.6) 0%, rgba(232,223,210,0.8) 100%);">
+    <!-- ===== WORKS SECTION ===== -->
+    <section id="works" class="py-20 px-4" style="background: linear-gradient(180deg, rgba(232, 223, 210, 0.6) 0%, rgba(232, 223, 210, 0.8) 100%);">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" style="color:#5a4a3a;">作品展示</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">作品展示</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="works-grid"></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t py-12" style="background:#f5f1e8; border-top:2px solid #d4af37;">
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
-                <div class="flex gap-3 items-center">
-                    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/rebirth_logo-c8LpyDDQYCvN6mnMZq8oV7.webp" class="w-12 h-12 object-contain">
-                    <span class="text-lg font-bold" style="color:#1a3a3a;">蛻生</span>
+                <div class="flex items-center gap-3">
+                    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/rebirth_logo-c8LpyDDQYCvN6mnMZq8oV7.webp" alt="蛻生" class="w-12 h-12 object-contain">
+                    <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a;">蛻生</span>
                 </div>
-                <a href="#" class="text-sm" style="color:#1a3a3a;">靜宜大學中國文學系第八屆畢業成果展</a>
-                <div class="flex gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background:#1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="#" class="text-sm transition-colors hover:text-accent" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">靜宜大學中國文學系第八屆畢業成果展</a>
+                
+                <div class="flex items-center gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
-                <div class="space-y-1.5 text-sm" style="color:#555;">
-                    <p><span style="color:#d4af37; font-weight:bold;">▹展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
-                    <p><span style="color:#d4af37; font-weight:bold;">🕙 開放時間</span> 09:00 – 16:00</p>
-                    <p><span style="color:#d4af37; font-weight:bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
-                    <p><span style="color:#d4af37; font-weight:bold;">　　地　　址：433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)　</p>
+
+                <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
+                    <p><span style="color: #d4af37; font-weight: bold;">▹展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
+                    <p><span style="color: #d4af37; font-weight: bold;">🕙 開放時間</span> 09:00 – 16:00</p>
+                    <p><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
+                    <p><span style="color: #d4af37; font-weight: bold;">　　地　　址：433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</span></p>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t" style="border-top:1px solid rgba(212,175,55,0.2);">
-                <p class="text-xs text-right" style="color:#999;">蛻生 - 靜宜大學中國文學系第八屆畢業成果展</p>
+            <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                <p class="text-xs text-right" style="font-family: 'Noto Sans TC', sans-serif; color: #999;">蛻生 - 靜宜大學中國文學系第八屆畢業成果展</p>
             </div>
         </div>
     </footer>
@@ -179,10 +210,10 @@
             grid.innerHTML = worksData.map(w => `
                 <div class="work-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="showWorkDetail(${w.id})">
                     <div class="w-full h-48 overflow-hidden bg-amber-100">
-                        ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
+                        ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-full flex items-center justify-center\'><span class=\'text-white text-sm px-4 text-center\'>📷 圖片載入失敗<br>${w.title}</span></div>'">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-800 mb-1">${w.title}</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-1" style="font-family: 'Noto Serif TC', serif;">${w.title}</h3>
                         <p class="text-sm text-gray-600 mb-2">第 ${w.no} 組</p>
                         <p class="text-sm text-gray-500">${w.author}</p>
                         <button class="mt-3 text-indigo-600 hover:text-indigo-800 text-sm transition">閱讀更多 →</button>
@@ -200,25 +231,25 @@
             detail.innerHTML = `
                 <section class="py-16 px-4" style="min-height:calc(100vh - 200px);">
                     <div class="max-w-3xl mx-auto p-8 rounded-sm" style="background:rgba(255,255,255,0.9); border:2px solid #8b7355;">
-                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="color:#8b7355;">← 返回</button>
+                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="font-family:'Noto Sans TC',sans-serif; color:#8b7355; cursor:pointer;">← 返回</button>
                         <div class="mb-8">
-                            <h1 class="text-3xl font-bold mb-2" style="color:#5a4a3a;">${w.title}</h1>
-                            <p class="text-lg" style="color:#6b5d4f;">創作者：${w.author}</p>
+                            <h1 class="text-3xl font-bold mb-2" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">${w.title}</h1>
+                            <p class="text-lg" style="font-family:'Noto Sans TC',sans-serif; color:#6b5d4f;">創作者：${w.author}</p>
                         </div>
                         <div class="mb-8 flex flex-col items-center gap-4">
-                            ${w.img1 ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><img src="${w.img1}" alt="作品圖片 1" class="w-full h-auto object-cover"></div>` : '<div class="image-placeholder w-full h-64">暫無圖片 1</div>'}
-                            ${w.img2 ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><img src="${w.img2}" alt="作品圖片 2" class="w-full h-auto object-cover"></div>` : '<div class="image-placeholder w-full h-64">暫無圖片 2</div>'}
+                            ${w.img1 ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><img src="${w.img1}" alt="作品圖片 1" class="w-full h-auto object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-64 flex items-center justify-center\'>暫無圖片 1</div>'"></div>` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 1</div>'}
+                            ${w.img2 ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><img src="${w.img2}" alt="作品圖片 2" class="w-full h-auto object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-64 flex items-center justify-center\'>暫無圖片 2</div>'"></div>` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 2</div>'}
                             ${w.video ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><div class="aspect-video"><iframe class="w-full h-full" src="${w.video}" frameborder="0" allowfullscreen></iframe></div></div>` : ''}
                         </div>
                         <div class="mb-8">
-                            <h3 class="text-xl font-bold mb-4" style="color:#5a4a3a;">作品介紹</h3>
-                            <p class="leading-relaxed whitespace-pre-line" style="color:#5a4a3a; line-height:1.8;">${w.desc || "敬請期待更多作品介紹。"}</p>
+                            <h3 class="text-xl font-bold mb-4" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">作品介紹</h3>
+                            <p class="leading-relaxed whitespace-pre-line" style="font-family:'Noto Sans TC',sans-serif; color:#5a4a3a; line-height:1.8;">${w.desc || "敬請期待更多作品介紹。"}</p>
                         </div>
                         <div class="pt-8 border-t-2" style="border-color:#8b7355;">
-                            <h3 class="text-lg font-bold mb-4" style="color:#5a4a3a;">分享此作品</h3>
+                            <h3 class="text-lg font-bold mb-4" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">分享此作品</h3>
                             <div class="flex gap-4">
-                                <button onclick="window.open('https://line.me/R/msg/text/?${encodeURIComponent(w.title + ' ' + location.href.split('?')[0])}', '_blank')" class="px-4 py-2 rounded-sm" style="background:#00b900; color:white;">LINE</button>
-                                <button onclick="navigator.clipboard.writeText(location.href.split('?')[0]); alert('連結已複製！')" class="px-4 py-2 rounded-sm" style="background:#8b7355; color:white;">複製連結</button>
+                                <button onclick="window.open('https://line.me/R/msg/text/?${encodeURIComponent(w.title + ' ' + location.href.split('?')[0])}', '_blank')" class="px-4 py-2 rounded-sm" style="background:#00b900; color:white; cursor:pointer;">LINE</button>
+                                <button onclick="navigator.clipboard.writeText(location.href.split('?')[0]); alert('連結已複製！')" class="px-4 py-2 rounded-sm" style="background:#8b7355; color:white; cursor:pointer;">複製連結</button>
                             </div>
                         </div>
                     </div>
