@@ -87,6 +87,18 @@
         </div>
     </section>
 
+                <!-- 展覽概念 -->
+                <div class="p-6 rounded-sm" style="background: rgba(255, 255, 255, 0.85); border: 2px solid #8b7355;">
+                    <h3 class="text-xl font-bold mb-4" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">展覽概念</h3>
+                    <p class="text-sm leading-relaxed" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f; line-height: 1.8;">
+                        「蛻生」象徵著文學系學生四年來的成長與轉變。透過17組多元創作形式，展現文字的力量與生命的韌性。<br><br>
+                        展覽以報紙風格為視覺基調，融合古典文學與當代設計，呈現傳統與創新的對話。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== FOOTER ===== -->
     <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
         <div class="max-w-4xl mx-auto px-6">
@@ -201,10 +213,12 @@
             const hero = document.getElementById('home');
             const info = document.getElementById('info');
             const works = document.getElementById('works');
-            if (mainDiv && hero && info && works) {
+            const curation = document.getElementById('curation');
+            if (mainDiv && hero && info && works && curation) {
                 mainDiv.appendChild(hero);
                 mainDiv.appendChild(info);
                 mainDiv.appendChild(works);
+                mainDiv.appendChild(curation);
             }
         });
     </script>
