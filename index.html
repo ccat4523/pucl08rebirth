@@ -11,7 +11,7 @@
     <meta property="og:description" content="靜宜大學中國文學系第八屆畢業展覽「蛻生」，17組同學、17種創作語彙。">
     <meta property="og:url" content="https://ccat4523.github.io/pucl08rebirth/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.jpg">
+    <meta property="og:image" content="https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
@@ -27,40 +27,160 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); } 50% { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes butterflyFly { 0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; } 50% { transform: translate(-50%, -50%) rotate(10deg); opacity: 0.8; } 100% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0; } }
         
         .animate-float { animation: float 5s ease-in-out infinite; }
         .animate-bounce { animation: bounce 2s infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
+        
+        /* Loading 動畫 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e8dfd2;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loading-butterfly {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            animation: butterflyFly 1.2s ease-in-out infinite;
+        }
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #8b7355;
+            letter-spacing: 4px;
+        }
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            background: #8b7355;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        /* 導航列自動隱藏 */
+        .navbar-hidden {
+            transform: translateY(-100%);
+        }
+        
+        /* 回到頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #8b7355;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 光暈跟隨效果 */
+        .glow-cursor {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.04) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 999;
+            transition: transform 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* 倒數計時區塊 */
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            padding: 8px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+        }
+        .countdown-item {
+            text-align: center;
+        }
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5a4a3a;
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            color: #8b7355;
+        }
         
         .nav-glass { 
             background: rgba(245, 241, 232, 0.95); 
             backdrop-filter: blur(10px); 
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
         
-        /* 作品卡片美化 */
+        /* 作品卡片 - 純白色背景 */
         .work-card { 
             transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease; 
-            border: 1px solid rgba(139, 115, 85, 0.15);
-            border-radius: 12px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         .work-card:hover { 
             transform: translateY(-8px); 
             box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            border-color: rgba(212, 175, 55, 0.4);
+            border-color: rgba(212, 175, 55, 0.5);
         }
         .work-card:active {
             transform: translateY(-4px);
-            transition: transform 0.05s;
         }
         
         /* 圖片 hover 金色 overlay */
         .work-card-img-container {
             position: relative;
             overflow: hidden;
+            background: #f5f0e8;
         }
         .work-card-img-container::after {
             content: '';
@@ -178,21 +298,19 @@
             transform: translateY(1px);
         }
         
-        /* 閱讀更多按鈕 */
         .work-card button {
             transition: all 0.25s ease;
             background: transparent;
             border: none;
             cursor: pointer;
             font-weight: 500;
+            color: #8b7355;
         }
         .work-card button:hover {
-            color: #8b7355;
+            color: #d4af37;
             transform: translateX(5px);
-            gap: 4px;
         }
         
-        /* 返回按鈕 */
         .back-btn {
             transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
@@ -204,11 +322,7 @@
             color: #d4af37;
             transform: translateX(-5px);
         }
-        .back-btn:active {
-            transform: translateX(-2px);
-        }
         
-        /* 頁面切換動畫 */
         .fade-in {
             animation: fadeIn 0.4s ease-out;
         }
@@ -220,7 +334,6 @@
             margin: 0 auto 1.5rem auto;
         }
         
-        /* 導航連結 hover */
         .nav-link {
             transition: all 0.2s ease;
             position: relative;
@@ -252,10 +365,33 @@
             .butterfly-corner::after { width: 4px; height: 4px; }
             .corner-tl, .corner-tr, .corner-bl, .corner-br { top: -7px; left: -7px; right: -7px; bottom: -7px; }
             .info-box-decoration::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
+            .countdown-number { font-size: 1rem; }
+            .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .glow-cursor { display: none; }
         }
     </style>
 </head>
-<body style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
+<body>
+
+    <!-- Loading 動畫 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-butterfly">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 30 C35 20, 15 25, 10 40 C5 55, 20 65, 35 55 C40 50, 45 45, 50 40 C55 45, 60 50, 65 55 C80 65, 95 55, 90 40 C85 25, 65 20, 50 30Z" fill="#d4af37" opacity="0.8"/>
+                <path d="M50 35 C40 28, 25 32, 20 42 C15 52, 25 60, 35 52 C40 47, 45 43, 50 40 C55 43, 60 47, 65 52 C75 60, 85 52, 80 42 C75 32, 60 28, 50 35Z" fill="#8b7355" opacity="0.6"/>
+                <path d="M48 35 L52 35 L50 65 Z" fill="#5a4a3a" opacity="0.7"/>
+            </svg>
+        </div>
+        <div class="loading-text">
+            蛻生
+            <div class="loading-dots">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 光暈跟隨效果 -->
+    <div id="glowCursor" class="glow-cursor"></div>
 
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
@@ -294,7 +430,87 @@
         </div>
     </nav>
 
+    <!-- 回到頂部按鈕 -->
+    <button id="backToTop" class="back-to-top" aria-label="回到頂部">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <script>
+        // Loading 動畫
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loadingOverlay');
+            setTimeout(() => {
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // 導航列自動隱藏 + 回到頂部按鈕顯示
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('navbar');
+        const backBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                navbar.classList.add('navbar-hidden');
+            } else {
+                navbar.classList.remove('navbar-hidden');
+            }
+            lastScrollY = currentScrollY;
+            
+            if (window.scrollY > 300) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+
+        // 回到頂部功能
+        backBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 光暈跟隨效果（僅桌機）
+        const glowCursor = document.getElementById('glowCursor');
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) {
+                glowCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            }
+        });
+
+        // 倒數計時
+        function updateCountdown() {
+            const targetDate = new Date(2026, 4, 12);
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdownDisplay').innerHTML = '<span style="color:#d4af37; background:rgba(255,255,255,0.8); padding:8px 20px; border-radius:50px;">展覽進行中！</span>';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (3600000)) / (1000 * 60));
+            
+            document.getElementById('countdownDisplay').innerHTML = `
+                <div class="countdown-box">
+                    <div class="countdown-item"><div class="countdown-number">${days}</div><div class="countdown-label">天</div></div>
+                    <div class="countdown-item"><div class="countdown-number">${hours}</div><div class="countdown-label">時</div></div>
+                    <div class="countdown-item"><div class="countdown-number">${minutes}</div><div class="countdown-label">分</div></div>
+                    <span style="color:#d4af37;">後開展</span>
+                </div>
+            `;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         if(menuBtn) menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
@@ -323,12 +539,6 @@
         function shareWorkToLINE(workTitle) {
             window.open(`https://line.me/R/msg/text/?${encodeURIComponent(workTitle + ' ' + getPageUrl())}`, '_blank');
         }
-        
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('nav-glass', 'shadow-md');
-            else nav.classList.remove('nav-glass', 'shadow-md');
-        });
     </script>
 
     <!-- ===== HERO SECTION ===== -->
@@ -340,6 +550,9 @@
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em; font-weight: 900;">蛻　生</h1>
             
             <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 600; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
+            
+            <!-- 倒數計時顯示區 -->
+            <div id="countdownDisplay"></div>
             
             <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative paper-texture info-box-decoration" style="background: rgba(255, 255, 255, 0.95); border: 2px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
                 <div class="butterfly-corner corner-tl"></div>
@@ -393,7 +606,7 @@
     <section id="works" class="py-20 px-4" style="background: linear-gradient(180deg, rgba(232, 223, 210, 0.6) 0%, rgba(232, 223, 210, 0.8) 100%);">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">作品展示</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="works-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="works-grid"></div>
         </div>
     </section>
 
@@ -464,14 +677,14 @@
             if(!grid) return;
             grid.innerHTML = worksData.map(w => `
                 <div class="work-card" onclick='showWorkDetail(${JSON.stringify(w)})'>
-                    <div class="work-card-img-container w-full h-48 overflow-hidden bg-amber-100">
+                    <div class="work-card-img-container w-full h-48 overflow-hidden">
                         ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-full flex items-center justify-center\'><span class=\'text-white text-sm px-4 text-center\'>📷 圖片載入失敗<br>${w.title}</span></div>'">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
                     </div>
                     <div class="p-4">
                         <h3 class="text-lg font-bold text-gray-800 mb-1">${w.title}</h3>
-                        <p class="text-sm text-gray-600 mb-2">第 ${w.no} 組</p>
+                        <p class="text-sm text-gray-500 mb-2">第 ${w.no} 組</p>
                         <p class="text-sm text-gray-500">${w.author}</p>
-                        <button class="mt-3 text-indigo-600 transition">閱讀更多 →</button>
+                        <button class="mt-3 transition">閱讀更多 →</button>
                     </div>
                 </div>
             `).join('');
@@ -533,7 +746,7 @@
             
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage) {
-                ogImage.setAttribute('content', 'https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.jpg');
+                ogImage.setAttribute('content', 'https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.png');
             }
         }
         
