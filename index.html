@@ -27,6 +27,12 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
+        /* 作品標題統一使用 Noto Serif TC */
+        .work-title, .detail-title {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+        }
+        
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); } 50% { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); } }
@@ -37,7 +43,7 @@
         .animate-bounce { animation: bounce 2s infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
         
-        /* Loading 動畫 - 字體使用 Noto Serif TC */
+        /* Loading 動畫 */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -66,19 +72,6 @@
             color: #5a4a3a;
             letter-spacing: 0.15em;
         }
-        .loading-dots {
-            display: inline-flex;
-            gap: 4px;
-        }
-        .loading-dots span {
-            width: 6px;
-            height: 6px;
-            background: #8b7355;
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
-        }
-        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
-        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
         
         /* 導航列自動隱藏 */
         .navbar-hidden {
@@ -289,7 +282,7 @@
             font-size: 14px; 
         }
         
-        /* 分享小圖標按鈕 */
+        /* 分享按鈕 */
         .share-icon-btn {
             transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
@@ -349,6 +342,7 @@
         .nav-link {
             transition: all 0.2s ease;
             position: relative;
+            cursor: pointer;
         }
         .nav-link:hover {
             color: #d4af37;
@@ -376,7 +370,10 @@
             .hero-subtitle {
                 font-size: 1rem !important;
             }
-            .work-card h3 {
+            /* 手機端作品標題同樣使用 Noto Serif TC */
+            .work-card h3,
+            .detail-title {
+                font-family: 'Noto Serif TC', serif !important;
                 font-size: 1rem !important;
                 font-weight: 700 !important;
             }
@@ -408,7 +405,6 @@
             .nav-link {
                 font-size: 0.85rem !important;
             }
-            /* 分享按鈕手機版 */
             .share-icon-btn {
                 padding: 6px 12px;
                 font-size: 0.7rem;
@@ -417,16 +413,14 @@
                 width: 14px;
                 height: 14px;
             }
-            /* 增加觸控區域 */
             .work-card {
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
             }
-            .share-icon-btn, .back-btn, .work-card button {
+            .share-icon-btn, .back-btn, .work-card button, .nav-link {
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
             }
-            /* 手機版點擊回饋 */
             .work-card:active {
                 transform: scale(0.98);
             }
@@ -470,39 +464,24 @@
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-16">
-                <a href="#" class="flex items-center gap-2">
+                <a href="javascript:void(0)" onclick="closeWorkDetailAndScrollTo('home')" class="flex items-center gap-2">
                     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/rebirth_logo-c8LpyDDQYCvN6mnMZq8oV7.webp" alt="蛻生" class="w-9 h-9 object-contain">
                     <span class="text-base font-bold hidden sm:inline" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; font-weight: 700;">蛻生</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">主頁</a>
-                    <a href="#info" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">展覽資訊</a>
-                    <a href="#works" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">作品展示</a>
+                    <a href="javascript:void(0)" onclick="closeWorkDetailAndScrollTo('home')" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">主頁</a>
+                    <a href="javascript:void(0)" onclick="closeWorkDetailAndScrollTo('info')" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">展覽資訊</a>
+                    <a href="javascript:void(0)" onclick="closeWorkDetailAndScrollTo('works')" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">作品展示</a>
                     <div class="flex items-center gap-2">
-                        <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white;">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                            FB
-                        </button>
-                        <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white;">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349-1.926.166-3.26-.424-4.216-.589-.956-1.646-1.708-3.269-2.256-1.623-.548-3.732-.821-6.391-.821-2.66 0-4.768.273-6.391.821-1.623.548-2.68 1.3-3.269 2.256C.108 6.603-.075 7.937.274 9.863c.349 1.926 1.245 3.657 2.686 5.193 1.441 1.536 3.428 2.769 5.96 3.699.254.092.473.212.656.358.183.146.315.325.396.536l.721 2.237c.092.285.191.504.296.656.105.152.291.228.558.228.267 0 .453-.076.558-.228.105-.152.204-.371.296-.656l.721-2.237c.081-.211.213-.39.396-.536.183-.146.402-.266.656-.358 2.532-.93 4.519-2.163 5.96-3.699 1.441-1.536 2.337-3.267 2.686-5.193z"/></svg>
-                            LINE
-                        </button>
-                        <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white;">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                            複製
-                        </button>
+                        <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white;">FB</button>
+                        <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white;">LINE</button>
+                        <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white;">複製</button>
                     </div>
                 </div>
                 <div class="md:hidden flex items-center gap-2">
-                    <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white; padding: 6px 10px;">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </button>
-                    <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white; padding: 6px 10px;">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349-1.926.166-3.26-.424-4.216-.589-.956-1.646-1.708-3.269-2.256-1.623-.548-3.732-.821-6.391-.821-2.66 0-4.768.273-6.391.821-1.623.548-2.68 1.3-3.269 2.256C.108 6.603-.075 7.937.274 9.863c.349 1.926 1.245 3.657 2.686 5.193 1.441 1.536 3.428 2.769 5.96 3.699.254.092.473.212.656.358.183.146.315.325.396.536l.721 2.237c.092.285.191.504.296.656.105.152.291.228.558.228.267 0 .453-.076.558-.228.105-.152.204-.371.296-.656l.721-2.237c.081-.211.213-.39.396-.536.183-.146.402-.266.656-.358 2.532-.93 4.519-2.163 5.96-3.699 1.441-1.536 2.337-3.267 2.686-5.193z"/></svg>
-                    </button>
-                    <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white; padding: 6px 10px;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                    </button>
+                    <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white; padding: 6px 10px;">FB</button>
+                    <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white; padding: 6px 10px;">LINE</button>
+                    <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white; padding: 6px 10px;">複製</button>
                     <button id="menuBtn" class="p-2" style="color: #1a3a3a;">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
@@ -511,9 +490,9 @@
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t" style="background: rgba(245, 241, 232, 0.98); border-top: 1px solid rgba(212, 175, 55, 0.2);">
             <div class="px-4 py-3 space-y-3">
-                <a href="#" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">主頁</a>
-                <a href="#info" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">展覽資訊</a>
-                <a href="#works" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeMobileMenu()">作品展示</a>
+                <a href="javascript:void(0)" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeWorkDetailAndScrollTo('home'); closeMobileMenu()">主頁</a>
+                <a href="javascript:void(0)" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeWorkDetailAndScrollTo('info'); closeMobileMenu()">展覽資訊</a>
+                <a href="javascript:void(0)" class="block py-2 transition-colors" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;" onclick="closeWorkDetailAndScrollTo('works'); closeMobileMenu()">作品展示</a>
             </div>
         </div>
     </nav>
@@ -526,6 +505,15 @@
     </button>
 
     <script>
+        // 輔助函數：關閉作品詳情並滾動到指定區塊
+        function closeWorkDetailAndScrollTo(sectionId) {
+            closeWorkDetail();
+            const section = document.getElementById(sectionId);
+            if(section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
         // Loading 動畫
         window.addEventListener('load', () => {
             const loading = document.getElementById('loadingOverlay');
@@ -618,7 +606,7 @@
             navigator.clipboard.writeText(getPageUrl()).then(() => alert('連結已複製！')).catch(() => prompt('請手動複製連結', getPageUrl())); 
         }
         
-        function shareWorkToFB(workTitle, workImgUrl) {
+        function shareWorkToFB(workTitle) {
             const url = getPageUrl();
             const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(workTitle)}`;
             window.open(fbUrl, '_blank', 'width=600,height=400');
@@ -709,7 +697,7 @@
                     <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; font-weight: 700;">蛻生</span>
                 </div>
                 
-                <a href="#" class="footer-text text-base md:text-lg transition-colors hover:text-accent" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; letter-spacing: 0.03em; font-weight: 600;">靜宜大學中國文學系第八屆畢業成果展</a>
+                <a href="javascript:void(0)" onclick="closeWorkDetailAndScrollTo('home')" class="footer-text text-base md:text-lg transition-colors hover:text-accent" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; letter-spacing: 0.03em; font-weight: 600;">靜宜大學中國文學系第八屆畢業成果展</a>
                 
                 <div class="flex items-center gap-4">
                     <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
@@ -769,7 +757,7 @@
                         ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-full flex items-center justify-center\'><span class=\'text-white text-sm px-4 text-center\'>📷 圖片載入失敗<br>${w.title}</span></div>'">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-800 mb-1">${w.title}</h3>
+                        <h3 class="work-title text-lg font-bold text-gray-800 mb-1">${w.title}</h3>
                         <p class="text-sm text-gray-500 mb-2">第 ${w.no} 組</p>
                         <p class="text-sm text-gray-500">${w.author}</p>
                         <button class="mt-3 transition">閱讀更多 →</button>
@@ -799,7 +787,7 @@
                     <div class="max-w-3xl mx-auto p-8 rounded-sm" style="background:rgba(255,255,255,0.9); border:2px solid #8b7355;">
                         <button onclick="closeWorkDetail()" class="back-btn inline-block mb-6 text-sm" style="color:#8b7355;">← 返回作品列表</button>
                         <div class="mb-8">
-                            <h1 class="text-3xl font-bold mb-2" style="color:#5a4a3a;">${w.title}</h1>
+                            <h1 class="detail-title text-3xl font-bold mb-2" style="color:#5a4a3a;">${w.title}</h1>
                             <p class="text-lg" style="color:#6b5d4f;">創作者：${w.author}</p>
                         </div>
                         <div class="mb-8 flex flex-col items-center gap-4">
@@ -814,7 +802,7 @@
                         <div class="pt-8 border-t-2" style="border-color:#8b7355;">
                             <h3 class="text-lg font-bold mb-4" style="color:#5a4a3a;">分享此作品</h3>
                             <div class="flex gap-4">
-                                <button onclick="shareWorkToFB('${w.title}', '${w.img1 || ''}')" class="share-icon-btn" style="background:#1877f2; color:white;">📘 FB</button>
+                                <button onclick="shareWorkToFB('${w.title}')" class="share-icon-btn" style="background:#1877f2; color:white;">📘 FB</button>
                                 <button onclick="shareWorkToLINE('${w.title}')" class="share-icon-btn" style="background:#00b900; color:white;">💬 LINE</button>
                                 <button onclick="navigator.clipboard.writeText(location.href.split('?')[0]); alert('連結已複製！')" class="share-icon-btn" style="background:#8b7355; color:white;">🔗 複製</button>
                             </div>
