@@ -24,7 +24,7 @@
 </head>
 <body style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
 
-    <!-- Navbar (保持不變) -->
+    <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-16">
@@ -51,7 +51,7 @@
         });
     </script>
 
-    <!-- ===== HERO SECTION (保留展覽資訊框) ===== -->
+    <!-- ===== HERO SECTION (展覽資訊框已完全移除) ===== -->
     <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 px-4" style="background: linear-gradient(180deg, rgba(212, 197, 176, 0.7) 0%, rgba(212, 197, 176, 0.5) 50%, rgba(212, 197, 176, 0.7) 100%);">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/hands_butterfly-82t2QECvULcYdbgUGVUnLa.webp" alt="手中的蝴蝶" class="w-full object-contain animate-float">
@@ -59,26 +59,6 @@
         <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em;">蛻　生</h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 300; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
-            
-            <!-- 主視覺的展覽資訊框 (保留) -->
-            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
-                <div class="absolute -top-3 -left-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
-                <div class="absolute -bottom-3 -right-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
-                <div class="space-y-6 text-center">
-                    <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">展覽日期</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">2026年5月12日（二）– 5月14日（四）</p>
-                    </div>
-                    <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">🕙 開放時間</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">09:00 – 16:00</p>
-                    </div>
-                    <div>
-                        <p style="color: #8b7355; font-weight: 600;">📍 展覽地點</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">靜宜大學宜園餐廳樓上iDO培力基地</p>
-                    </div>
-                </div>
-            </div>
             <p class="mt-12 max-w-2xl italic text-sm sm:text-base" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">「一千五百個日升中，指尖已結出新繭；而當遍撤的種子萌芽，我將振翅高飛。」</p>
         </div>
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -107,7 +87,7 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER (新增展覽資訊區塊) ===== -->
+    <!-- ===== FOOTER (包含完整展覽資訊) ===== -->
     <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
@@ -117,13 +97,12 @@
                 </div>
                 <a href="#home" class="text-sm transition-colors hover:text-accent" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">靜宜大學中國文學系第八屆畢業成果展</a>
                 
-                <!-- 社群媒體圖示 -->
                 <div class="flex items-center gap-4">
                     <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
                     <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
 
-                <!-- 頁尾的展覽資訊區塊 (新增) -->
+                <!-- 頁尾的展覽資訊區塊 -->
                 <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
                     <p><span style="color: #d4af37; font-weight: bold;">▹展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
                     <p><span style="color: #d4af37; font-weight: bold;">🕙 開放時間</span> 09:00 – 16:00</p>
@@ -137,25 +116,25 @@
     </footer>
 
     <script>
-        // 17 組作品資料 (已包含您提供的三組)
+        // 17 組作品資料（含前三組詳細介紹）
         const worksData = [
-            { id: 1, workNumber: 1, title: "文以載道但載不動我模擬器", author: "張凱晴、賴安蓁、蔡妘姗", description: "", image1Url: "https://github.com/ccat4523/-/raw/main/images/a1.jpg", image2Url: "https://github.com/ccat4523/-/raw/main/images/a2.jpg" },
-            { id: 2, workNumber: 2, title: "靜物微縮劇場!讓「思無邪」的婚戀穿越藩籬", author: "徐艾、蔡佳欣", description: "", image1Url: "https://github.com/ccat4523/-/raw/main/images/b1.png", image2Url: "https://github.com/ccat4523/-/raw/main/images/b2.jpg" },
-            { id: 3, workNumber: 3, title: "麵跡台中——舊行政區的拉麵日常", author: "康懷方、廖恩嫺", description: "", image1Url: "https://github.com/ccat4523/-/raw/main/images/c1.jpg", image2Url: "https://github.com/ccat4523/-/raw/main/images/c2.jpg" },
-            { id: 4, workNumber: 4, title: "第 4 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 5, workNumber: 5, title: "第 5 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 6, workNumber: 6, title: "第 6 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 7, workNumber: 7, title: "第 7 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 8, workNumber: 8, title: "第 8 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 9, workNumber: 9, title: "第 9 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 10, workNumber: 10, title: "第 10 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 11, workNumber: 11, title: "第 11 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 12, workNumber: 12, title: "第 12 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 13, workNumber: 13, title: "第 13 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 14, workNumber: 14, title: "第 14 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 15, workNumber: 15, title: "第 15 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 16, workNumber: 16, title: "第 16 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null },
-            { id: 17, workNumber: 17, title: "第 17 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null }
+            { id: 1, workNumber: 1, title: "文以載道但載不動我模擬器", author: "張凱晴、賴安蓁、蔡妘姗", description: "我們的作品是結合了大富翁的隨機性與RPG元素的複合式桌遊。以靜宜大學為地理藍本，將中國文學系的學科與校園生活轉化為具象的遊戲機制，讓玩家跑過一圈如同度過一年，旨在讓玩家透過遊玩的形式，深度體驗一名中文系學生完整的大學四年生活。遊戲設計強調情境化與代入感，將校園地標與學術課程緊密融入地圖與事件。玩家將化身為中文系新生，在四年的遊戲進程中，不僅需要努力獲取學分，更必須在現實又殘酷的機會、命運中做出關鍵決策。每張卡牌上都有獨屬於自己的小故事，將最真實的大學生生活，提煉成有趣的冒險，使枯燥的日常轉化為充滿驚喜的挑戰。本作品兼具學系推廣與大眾娛樂之雙重功能，不僅希望能引發校內師生的共鳴，也讓校外大眾得以透過輕鬆趣味的視角，更加理解中文系。文以載道，也載了我們的青春。", image1Url: "https://github.com/ccat4523/-/raw/main/images/a1.jpg", image2Url: "https://github.com/ccat4523/-/raw/main/images/a2.jpg" },
+            { id: 2, workNumber: 2, title: "靜物微縮劇場!讓「思無邪」的婚戀穿越藩籬", author: "徐艾、蔡佳欣", description: "過去與現在鮮少有隔閡的一件事——從古至今皆談，有哀怨、有稱頌，這便是最容易「穿越藩籬」的事：婚戀。本作品選定四首《詩經》春季婚戀詩，分別為〈子衿〉、〈野有蔓草〉、〈關雎〉、〈桃夭〉。以微縮模型嘗試「穿越藩籬」，也可以理解為讓「物件說話」的一座「劇場」。我們從詩中選用關鍵詞句，來呈現場景、重要意象及「三對男女」，表達感情循序漸進的三階段：單相思⇀相戀⇀結婚。從一而終的是，我們希望中文系所學的並不被認作「老硞硞 (lāu-khok-khok)」的東西。人生唯一一次在大學裡展出作品，同時首次「以中文專業接觸人群」，創造直觀的物件，使人感受得到質地、聲音；以看得見的實體，期許在這一次展覽中得掙破藩籬。", image1Url: "https://github.com/ccat4523/-/raw/main/images/b1.png", image2Url: "https://github.com/ccat4523/-/raw/main/images/b2.jpg" },
+            { id: 3, workNumber: 3, title: "麵跡台中——舊行政區的拉麵日常", author: "康懷方、廖恩嫺", description: "本書以「拉麵」作為切入點，發展出一場關於味覺經驗與城市觀察的創作實踐。從日常中反覆出現的飲食選擇出發，透過實地走訪與品嚐，記錄不同店家的風格、湯頭層次與空間氛圍，並整理為具有參考性質的拉麵喜好表，此一系統化的呈現方式，讓讀者不僅能閱讀我們的經驗，也能依據自身偏好進行對照與選擇，使本書成為一種兼具主觀、客觀敘事與實用功能的飲食手冊。希望給予讀者的不只是「哪一碗拉麵好吃」的印象，而是能夠試圖理解拉麵如何作為文化符號，融入地方生活與城市紋理之中，穿梭於街巷，我們觀察那些看似平凡的店面與人潮，如何累積成一種集體的飲食記憶，並反映出不同時代與族群的生活樣貌。「開放性」也是本書很重要的核心理念，書中的喜好表與文字記錄並非提供「標準答案」，而是保留多元詮釋的空間，鼓勵讀者在閱讀與實際品嚐之間建立自己的連結。我們期望透過這樣的創作，使拉麵成為一種媒介，引導人們重新感知城市、重新理解自身，並在味覺與記憶的交織之中，拼湊出屬於個人的生活地圖。", image1Url: "https://github.com/ccat4523/-/raw/main/images/c1.jpg", image2Url: "https://github.com/ccat4523/-/raw/main/images/c2.jpg" },
+            { id: 4, workNumber: 4, title: "第 4 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 5, workNumber: 5, title: "第 5 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 6, workNumber: 6, title: "第 6 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 7, workNumber: 7, title: "第 7 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 8, workNumber: 8, title: "第 8 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 9, workNumber: 9, title: "第 9 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 10, workNumber: 10, title: "第 10 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 11, workNumber: 11, title: "第 11 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 12, workNumber: 12, title: "第 12 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 13, workNumber: 13, title: "第 13 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 14, workNumber: 14, title: "第 14 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 15, workNumber: 15, title: "第 15 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 16, workNumber: 16, title: "第 16 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null },
+            { id: 17, workNumber: 17, title: "第 17 組作品", author: "待補", description: "敬請期待，詳細介紹即將公布。", image1Url: null, image2Url: null }
         ];
 
         function renderWorks() {
@@ -196,7 +175,7 @@
                         </div>
                         <div class="mb-8">
                             <h3 class="text-xl font-bold mb-4" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">作品介紹</h3>
-                            <p class="leading-relaxed" style="font-family: 'Noto Sans TC', sans-serif; color: #5a4a3a; line-height: 1.8;">${work.description || "敬請期待更多作品介紹。"}</p>
+                            <p class="leading-relaxed whitespace-pre-line" style="font-family: 'Noto Sans TC', sans-serif; color: #5a4a3a; line-height: 1.8;">${work.description || "敬請期待更多作品介紹。"}</p>
                         </div>
                         <div class="pt-8 border-t-2" style="border-color: #8b7355;">
                             <h3 class="text-lg font-bold mb-4" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">分享此作品</h3>
@@ -218,7 +197,7 @@
         
         document.addEventListener('DOMContentLoaded', () => {
             renderWorks();
-            // 重新組織 DOM 結構，讓主內容能被隱藏
+            // 重新組織 DOM 結構
             const mainDiv = document.getElementById('main-content');
             const hero = document.getElementById('home');
             const info = document.getElementById('info');
