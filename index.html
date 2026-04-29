@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes, viewport-fit=cover">
     <title>蛻生——靜宜大學中國文學系第八屆畢業展覽</title>
     <meta name="description" content="靜宜大學中國文學系第八屆畢業展覽「蛻生」，文學系學生的創意與成長。17組同學、17種創作語彙，各自以不同的姿態，訴說屬於我們的故事。">
     
@@ -21,7 +21,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Noto Sans TC', 'Noto Serif TC', sans-serif; }
+        * { 
+            font-family: 'Noto Sans TC', 'Noto Serif TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -33,7 +37,7 @@
         .animate-bounce { animation: bounce 2s infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
         
-        /* Loading 動畫 */
+        /* Loading 動畫 - 字體使用 Noto Serif TC */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -55,10 +59,12 @@
             animation: butterflyFly 1.2s ease-in-out infinite;
         }
         .loading-text {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #8b7355;
-            letter-spacing: 4px;
+            margin-top: 30px;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5a4a3a;
+            letter-spacing: 0.15em;
         }
         .loading-dots {
             display: inline-flex;
@@ -283,18 +289,24 @@
             font-size: 14px; 
         }
         
-        /* 按鈕美化 */
-        .share-btn { 
-            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1); 
-            cursor: pointer; 
-            position: relative;
-            overflow: hidden;
+        /* 分享小圖標按鈕 */
+        .share-icon-btn {
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
-        .share-btn:hover { 
-            transform: translateY(-2px); 
+        .share-icon-btn:hover {
+            transform: translateY(-2px);
             filter: brightness(0.93);
         }
-        .share-btn:active {
+        .share-icon-btn:active {
             transform: translateY(1px);
         }
         
@@ -355,23 +367,89 @@
             width: 100%;
         }
         
+        /* ===== 手機端字體與觸控優化 ===== */
         @media (max-width: 768px) {
-            .work-card h3 { font-size: 0.95rem; }
-            .work-card p, .work-card button { font-size: 0.7rem; }
-            .info-box-big { font-size: 1rem !important; }
-            .paper-texture::before { font-size: 50px; }
-            .butterfly-corner { width: 20px; height: 20px; }
-            .butterfly-corner::before { width: 7px; height: 7px; }
-            .butterfly-corner::after { width: 4px; height: 4px; }
-            .corner-tl, .corner-tr, .corner-bl, .corner-br { top: -7px; left: -7px; right: -7px; bottom: -7px; }
-            .info-box-decoration::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
-            .countdown-number { font-size: 1rem; }
-            .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
-            .glow-cursor { display: none; }
+            h1 {
+                font-size: 2.5rem !important;
+                letter-spacing: 0.1em !important;
+            }
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            .work-card h3 {
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+            }
+            .work-card .author-text {
+                font-size: 0.75rem !important;
+            }
+            .work-card .group-number {
+                font-size: 0.7rem !important;
+            }
+            .work-card button {
+                font-size: 0.7rem !important;
+                padding: 6px 0 !important;
+            }
+            .info-box-big {
+                font-size: 0.9rem !important;
+            }
+            .info-box-label {
+                font-size: 0.75rem !important;
+            }
+            footer .footer-text {
+                font-size: 0.7rem !important;
+            }
+            .address-text {
+                font-size: 0.7rem !important;
+            }
+            .countdown-number {
+                font-size: 1rem !important;
+            }
+            .nav-link {
+                font-size: 0.85rem !important;
+            }
+            /* 分享按鈕手機版 */
+            .share-icon-btn {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+            .share-icon-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+            /* 增加觸控區域 */
+            .work-card {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .share-icon-btn, .back-btn, .work-card button {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            /* 手機版點擊回饋 */
+            .work-card:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .work-card h3 {
+                font-size: 0.9rem !important;
+            }
+            .countdown-box {
+                padding: 4px 12px;
+                gap: 8px;
+            }
+            .countdown-number {
+                font-size: 0.9rem !important;
+            }
+            .butterfly-corner {
+                transform: scale(0.7);
+            }
         }
     </style>
 </head>
-<body>
+<body style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
 
     <!-- Loading 動畫 -->
     <div id="loadingOverlay" class="loading-overlay">
@@ -382,12 +460,7 @@
                 <path d="M48 35 L52 35 L50 65 Z" fill="#5a4a3a" opacity="0.7"/>
             </svg>
         </div>
-        <div class="loading-text">
-            蛻生
-            <div class="loading-dots">
-                <span>.</span><span>.</span><span>.</span>
-            </div>
-        </div>
+        <div class="loading-text">蛻生</div>
     </div>
 
     <!-- 光暈跟隨效果 -->
@@ -406,15 +479,30 @@
                     <a href="#info" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">展覽資訊</a>
                     <a href="#works" class="nav-link transition-colors font-medium" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">作品展示</a>
                     <div class="flex items-center gap-2">
-                        <button onclick="shareToFB()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #1877f2; color: white;">Facebook</button>
-                        <button onclick="shareToLINE()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #00b900; color: white;">LINE</button>
-                        <button onclick="copyPageLink()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #8b7355; color: white;">複製連結</button>
+                        <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white;">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            FB
+                        </button>
+                        <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white;">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349-1.926.166-3.26-.424-4.216-.589-.956-1.646-1.708-3.269-2.256-1.623-.548-3.732-.821-6.391-.821-2.66 0-4.768.273-6.391.821-1.623.548-2.68 1.3-3.269 2.256C.108 6.603-.075 7.937.274 9.863c.349 1.926 1.245 3.657 2.686 5.193 1.441 1.536 3.428 2.769 5.96 3.699.254.092.473.212.656.358.183.146.315.325.396.536l.721 2.237c.092.285.191.504.296.656.105.152.291.228.558.228.267 0 .453-.076.558-.228.105-.152.204-.371.296-.656l.721-2.237c.081-.211.213-.39.396-.536.183-.146.402-.266.656-.358 2.532-.93 4.519-2.163 5.96-3.699 1.441-1.536 2.337-3.267 2.686-5.193z"/></svg>
+                            LINE
+                        </button>
+                        <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white;">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            複製
+                        </button>
                     </div>
                 </div>
                 <div class="md:hidden flex items-center gap-2">
-                    <button onclick="shareToFB()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #1877f2; color: white;">FB</button>
-                    <button onclick="shareToLINE()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #00b900; color: white;">LINE</button>
-                    <button onclick="copyPageLink()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #8b7355; color: white;">複製</button>
+                    <button onclick="shareToFB()" class="share-icon-btn" style="background: #1877f2; color: white; padding: 6px 10px;">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </button>
+                    <button onclick="shareToLINE()" class="share-icon-btn" style="background: #00b900; color: white; padding: 6px 10px;">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349-1.926.166-3.26-.424-4.216-.589-.956-1.646-1.708-3.269-2.256-1.623-.548-3.732-.821-6.391-.821-2.66 0-4.768.273-6.391.821-1.623.548-2.68 1.3-3.269 2.256C.108 6.603-.075 7.937.274 9.863c.349 1.926 1.245 3.657 2.686 5.193 1.441 1.536 3.428 2.769 5.96 3.699.254.092.473.212.656.358.183.146.315.325.396.536l.721 2.237c.092.285.191.504.296.656.105.152.291.228.558.228.267 0 .453-.076.558-.228.105-.152.204-.371.296-.656l.721-2.237c.081-.211.213-.39.396-.536.183-.146.402-.266.656-.358 2.532-.93 4.519-2.163 5.96-3.699 1.441-1.536 2.337-3.267 2.686-5.193z"/></svg>
+                    </button>
+                    <button onclick="copyPageLink()" class="share-icon-btn" style="background: #8b7355; color: white; padding: 6px 10px;">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                    </button>
                     <button id="menuBtn" class="p-2" style="color: #1a3a3a;">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
@@ -549,7 +637,7 @@
         <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em; font-weight: 900;">蛻　生</h1>
             
-            <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 600; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
+            <p class="hero-subtitle text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 600; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
             
             <!-- 倒數計時顯示區 -->
             <div id="countdownDisplay"></div>
@@ -562,20 +650,20 @@
                 
                 <div class="space-y-6 text-center relative z-10">
                     <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">📅 展覽日期</p>
+                        <p class="info-box-label" style="color: #8b7355; font-weight: 600;">📅 展覽日期</p>
                         <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">2026年5月12日（二）– 5月14日（四）</p>
                     </div>
                     <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">⏰ 開放時間</p>
+                        <p class="info-box-label" style="color: #8b7355; font-weight: 600;">⏰ 開放時間</p>
                         <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">09:00 – 16:00</p>
                     </div>
                     <div>
-                        <p style="color: #8b7355; font-weight: 600;">📍 展覽地點</p>
+                        <p class="info-box-label" style="color: #8b7355; font-weight: 600;">📍 展覽地點</p>
                         <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">靜宜大學宜園餐廳樓上iDO培力基地</p> 
                     </div>
                     <div>
-                        <p style="color: #8b7355; font-weight: 600;">🏫 展覽地址</p>
-                        <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
+                        <p class="info-box-label" style="color: #8b7355; font-weight: 600;">🏫 展覽地址</p>
+                        <p class="info-box-big address-text" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
                     </div>
                 </div>
             </div>
@@ -621,7 +709,7 @@
                     <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; font-weight: 700;">蛻生</span>
                 </div>
                 
-                <a href="#" class="text-base md:text-lg transition-colors hover:text-accent" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; letter-spacing: 0.03em; font-weight: 600;">靜宜大學中國文學系第八屆畢業成果展</a>
+                <a href="#" class="footer-text text-base md:text-lg transition-colors hover:text-accent" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; letter-spacing: 0.03em; font-weight: 600;">靜宜大學中國文學系第八屆畢業成果展</a>
                 
                 <div class="flex items-center gap-4">
                     <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
@@ -629,10 +717,10 @@
                 </div>
 
                 <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Serif TC', serif; color: #555;">
-                    <p><span style="color: #d4af37; font-weight: bold;">📅 展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
-                    <p><span style="color: #d4af37; font-weight: bold;">⏰ 開放時間</span> 09:00 – 16:00</p>
-                    <p><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
-                    <p style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                    <p class="footer-text"><span style="color: #d4af37; font-weight: bold;">📅 展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
+                    <p class="footer-text"><span style="color: #d4af37; font-weight: bold;">⏰ 開放時間</span> 09:00 – 16:00</p>
+                    <p class="footer-text"><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
+                    <p class="footer-text" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                         <span style="color: #d4af37; font-weight: bold;">🏫 展覽地址</span>
                         <span>433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</span>
                         <a href="https://maps.app.goo.gl/YDYTQpH9Wb7Ly6En8" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; color: #4285f4; text-decoration: none; font-weight: 500;" class="hover:underline">
@@ -645,7 +733,7 @@
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.15);">
-                <p class="text-xs text-right" style="font-family: 'Noto Sans TC', sans-serif; color: #999;">蛻生 - 靜宜大學中國文學系第八屆畢業成果展</p>
+                <p class="footer-text text-xs text-right" style="font-family: 'Noto Sans TC', sans-serif; color: #999;">蛻生 - 靜宜大學中國文學系第八屆畢業成果展</p>
             </div>
         </div>
     </footer>
@@ -700,6 +788,7 @@
             detailContainer.style.display = 'block';
             detailContainer.classList.add('fade-in');
             
+            // 動態更新 og:image 為作品的第一張圖片
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage && w.img1) {
                 ogImage.setAttribute('content', w.img1);
@@ -725,9 +814,9 @@
                         <div class="pt-8 border-t-2" style="border-color:#8b7355;">
                             <h3 class="text-lg font-bold mb-4" style="color:#5a4a3a;">分享此作品</h3>
                             <div class="flex gap-4">
-                                <button onclick="shareWorkToFB('${w.title}', '${w.img1 || ''}')" class="share-btn px-4 py-2 rounded-sm" style="background:#1877f2; color:white;">Facebook</button>
-                                <button onclick="shareWorkToLINE('${w.title}')" class="share-btn px-4 py-2 rounded-sm" style="background:#00b900; color:white;">LINE</button>
-                                <button onclick="navigator.clipboard.writeText(location.href.split('?')[0]); alert('連結已複製！')" class="share-btn px-4 py-2 rounded-sm" style="background:#8b7355; color:white;">複製連結</button>
+                                <button onclick="shareWorkToFB('${w.title}', '${w.img1 || ''}')" class="share-icon-btn" style="background:#1877f2; color:white;">📘 FB</button>
+                                <button onclick="shareWorkToLINE('${w.title}')" class="share-icon-btn" style="background:#00b900; color:white;">💬 LINE</button>
+                                <button onclick="navigator.clipboard.writeText(location.href.split('?')[0]); alert('連結已複製！')" class="share-icon-btn" style="background:#8b7355; color:white;">🔗 複製</button>
                             </div>
                         </div>
                     </div>
@@ -744,6 +833,7 @@
             mainContent.style.display = 'block';
             detailContainer.style.display = 'none';
             
+            // 恢復主頁的 og:image
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage) {
                 ogImage.setAttribute('content', 'https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.png');
