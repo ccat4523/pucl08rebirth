@@ -6,14 +6,14 @@
     <title>蛻生——靜宜大學中國文學系第八屆畢業展覽</title>
     <meta name="description" content="靜宜大學中國文學系第八屆畢業展覽「蛻生」，文學系學生的創意與成長。17組同學、17種創作語彙，各自以不同的姿態，訴說屬於我們的故事。">
     
-    <!-- Open Graph Meta Tags - 分享預覽（主頁用 zzz.jpg） -->
+    <!-- Open Graph Meta Tags - 分享預覽 -->
     <meta property="og:title" content="蛻生——靜宜大學中國文學系第八屆畢業展覽">
     <meta property="og:description" content="靜宜大學中國文學系第八屆畢業展覽「蛻生」，17組同學、17種創作語彙。">
     <meta property="og:url" content="https://ccat4523.github.io/-/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://github.com/ccat4523/-/raw/main/images/zzz.jpg">
     <meta property="og:image:width" content="1200">
-    meta property="og:image:height" content="630">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     
     <!-- 瀏覽器分頁小圖標 Favicon -->
@@ -31,7 +31,6 @@
         .animate-bounce { animation: bounce 2s infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
         
-        /* 導航列美化 */
         .nav-glass { 
             background: rgba(245, 241, 232, 0.95); 
             backdrop-filter: blur(10px); 
@@ -39,7 +38,6 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
-        /* 作品卡片美化 */
         .work-card { 
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
             border: 1px solid rgba(139, 115, 85, 0.15);
@@ -52,7 +50,6 @@
             border-color: rgba(212, 175, 55, 0.3);
         }
         
-        /* 圖片 hover 金色 overlay */
         .work-card-img-container {
             position: relative;
             overflow: hidden;
@@ -73,13 +70,11 @@
             opacity: 1;
         }
         
-        /* 展覽資訊框 - 紙張紋理 */
         .paper-texture {
             background-image: radial-gradient(rgba(139, 115, 85, 0.04) 1px, transparent 1px);
             background-size: 24px 24px;
             position: relative;
         }
-        /* 浮水印書法字 */
         .paper-texture::before {
             content: '蛻';
             position: absolute;
@@ -93,6 +88,58 @@
             font-weight: 700;
         }
         
+        /* 蝴蝶角落裝飾 */
+        .butterfly-corner {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .butterfly-corner::before,
+        .butterfly-corner::after {
+            content: '';
+            position: absolute;
+            background: #d4af37;
+            border-radius: 50%;
+        }
+        .butterfly-corner::before {
+            width: 10px;
+            height: 10px;
+        }
+        .butterfly-corner::after {
+            width: 6px;
+            height: 6px;
+            background: #8b7355;
+        }
+        .corner-tl { top: -10px; left: -10px; }
+        .corner-tl::before { top: 0; left: 0; box-shadow: -3px -3px 0 #8b7355; }
+        .corner-tl::after { bottom: -4px; right: -4px; }
+        .corner-tr { top: -10px; right: -10px; }
+        .corner-tr::before { top: 0; right: 0; box-shadow: 3px -3px 0 #8b7355; }
+        .corner-tr::after { bottom: -4px; left: -4px; }
+        .corner-bl { bottom: -10px; left: -10px; }
+        .corner-bl::before { bottom: 0; left: 0; box-shadow: -3px 3px 0 #8b7355; }
+        .corner-bl::after { top: -4px; right: -4px; }
+        .corner-br { bottom: -10px; right: -10px; }
+        .corner-br::before { bottom: 0; right: 0; box-shadow: 3px 3px 0 #8b7355; }
+        .corner-br::after { top: -4px; left: -4px; }
+        
+        .info-box-decoration {
+            position: relative;
+        }
+        .info-box-decoration::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px dashed rgba(139, 115, 85, 0.2);
+            pointer-events: none;
+            border-radius: 4px;
+        }
+        
         .image-placeholder { 
             background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); 
             display: flex; 
@@ -102,7 +149,6 @@
             font-size: 14px; 
         }
         
-        /* 按鈕美化 */
         .share-btn { 
             transition: all 0.2s ease; 
             cursor: pointer; 
@@ -119,7 +165,6 @@
             transform: translateX(3px);
         }
         
-        /* 頁尾分隔線裝飾 */
         .footer-decoration {
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, #8b7355, #d4af37, transparent);
@@ -127,13 +172,16 @@
             margin: 0 auto 1.5rem auto;
         }
         
-        /* 手機端優化 */
         @media (max-width: 768px) {
             .work-card h3 { font-size: 0.95rem; }
             .work-card p, .work-card button { font-size: 0.7rem; }
-            .info-box-text { font-size: 0.9rem; }
             .info-box-big { font-size: 1rem !important; }
             .paper-texture::before { font-size: 50px; }
+            .butterfly-corner { width: 20px; height: 20px; }
+            .butterfly-corner::before { width: 7px; height: 7px; }
+            .butterfly-corner::after { width: 4px; height: 4px; }
+            .corner-tl, .corner-tr, .corner-bl, .corner-br { top: -7px; left: -7px; right: -7px; bottom: -7px; }
+            .info-box-decoration::before { top: 8px; left: 8px; right: 8px; bottom: 8px; }
         }
     </style>
 </head>
@@ -183,7 +231,6 @@
         function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
         function getPageUrl() { return location.href.split('?')[0]; }
         
-        // Facebook 分享（主頁用預設 og:image）
         function shareToFB() {
             const url = getPageUrl();
             const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -195,18 +242,6 @@
         }
         function copyPageLink() { 
             navigator.clipboard.writeText(getPageUrl()).then(() => alert('連結已複製！')).catch(() => prompt('請手動複製連結', getPageUrl())); 
-        }
-        
-        // 作品詳情頁專用分享（更新 og:image 為該作品第一張圖片）
-        function shareWorkToFB(workTitle, workImgUrl) {
-            const url = getPageUrl();
-            // 使用 Facebook 的引數直接指定圖片和標題（更可靠）
-            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(workTitle)}`;
-            window.open(fbUrl, '_blank', 'width=600,height=400');
-        }
-        
-        function shareWorkToLINE(workTitle) {
-            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(workTitle + ' ' + getPageUrl())}`, '_blank');
         }
         
         window.addEventListener('scroll', () => {
@@ -224,13 +259,14 @@
         <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em; font-weight: 900;">蛻　生</h1>
             
-            <!-- 這行已加粗（font-weight: 600） -->
             <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 600; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
             
-            <!-- 展覽資訊框（美化版） -->
-            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative paper-texture" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
-                <div class="absolute -top-3 -left-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
-                <div class="absolute -bottom-3 -right-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
+            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative paper-texture info-box-decoration" style="background: rgba(255, 255, 255, 0.95); border: 2px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+                <div class="butterfly-corner corner-tl"></div>
+                <div class="butterfly-corner corner-tr"></div>
+                <div class="butterfly-corner corner-bl"></div>
+                <div class="butterfly-corner corner-br"></div>
+                
                 <div class="space-y-6 text-center relative z-10">
                     <div class="pb-4 border-b-2 border-gray-200">
                         <p style="color: #8b7355; font-weight: 600;">📅 展覽日期</p>
@@ -288,11 +324,11 @@
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
                 <div class="flex items-center gap-3">
-                    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/rebirth_logo-c8LpyDDQYCvN6mnMZq8oV7.webp" alt="蛻生" class="w-12 h-12 object-contain">
+                    <!-- 頁尾 Logo 已改成 sss.png -->
+                    <img src="images/sss.png" alt="蛻生" class="w-12 h-12 object-contain">
                     <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; font-weight: 700;">蛻生</span>
                 </div>
                 
-                <!-- 頁尾文字：字體放大 + 改為 Noto Serif TC + 加粗 -->
                 <a href="#" class="text-base md:text-lg transition-colors hover:text-accent" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; letter-spacing: 0.03em; font-weight: 600;">靜宜大學中國文學系第八屆畢業成果展</a>
                 
                 <div class="flex items-center gap-4">
@@ -344,7 +380,7 @@
                         ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-full flex items-center justify-center\'><span class=\'text-white text-sm px-4 text-center\'>📷 圖片載入失敗<br>${w.title}</span></div>'">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-800 mb-1" style="font-family: 'Noto Serif TC', serif;">${w.title}</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-1">${w.title}</h3>
                         <p class="text-sm text-gray-600 mb-2">第 ${w.no} 組</p>
                         <p class="text-sm text-gray-500">${w.author}</p>
                         <button class="mt-3 text-indigo-600 hover:text-indigo-800 text-sm transition">閱讀更多 →</button>
@@ -360,7 +396,6 @@
             const detail = document.getElementById('work-detail-container');
             detail.style.display = 'block';
             
-            // 動態更新頁面的 og:image 為當前作品的第一張圖片（用於分享）
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage && w.img1) {
                 ogImage.setAttribute('content', w.img1);
@@ -369,10 +404,10 @@
             detail.innerHTML = `
                 <section class="py-16 px-4" style="min-height:calc(100vh - 200px);">
                     <div class="max-w-3xl mx-auto p-8 rounded-sm" style="background:rgba(255,255,255,0.9); border:2px solid #8b7355;">
-                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="font-family:'Noto Sans TC',sans-serif; color:#8b7355; cursor:pointer;">← 返回</button>
+                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="color:#8b7355; cursor:pointer;">← 返回</button>
                         <div class="mb-8">
-                            <h1 class="text-3xl font-bold mb-2" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">${w.title}</h1>
-                            <p class="text-lg" style="font-family:'Noto Sans TC',sans-serif; color:#6b5d4f;">創作者：${w.author}</p>
+                            <h1 class="text-3xl font-bold mb-2" style="color:#5a4a3a;">${w.title}</h1>
+                            <p class="text-lg" style="color:#6b5d4f;">創作者：${w.author}</p>
                         </div>
                         <div class="mb-8 flex flex-col items-center gap-4">
                             ${w.img1 ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><img src="${w.img1}" alt="作品圖片 1" class="w-full h-auto object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-64 flex items-center justify-center\'>暫無圖片 1</div>'"></div>` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 1</div>'}
@@ -380,11 +415,11 @@
                             ${w.video ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background:rgba(200,180,160,0.3); border:2px solid #8b7355;"><div class="aspect-video"><iframe class="w-full h-full" src="${w.video}" frameborder="0" allowfullscreen></iframe></div></div>` : ''}
                         </div>
                         <div class="mb-8">
-                            <h3 class="text-xl font-bold mb-4" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">作品介紹</h3>
-                            <p class="leading-relaxed whitespace-pre-line" style="font-family:'Noto Sans TC',sans-serif; color:#5a4a3a; line-height:1.8;">${w.desc || "敬請期待更多作品介紹。"}</p>
+                            <h3 class="text-xl font-bold mb-4" style="color:#5a4a3a;">作品介紹</h3>
+                            <p class="leading-relaxed whitespace-pre-line" style="color:#5a4a3a; line-height:1.8;">${w.desc || "敬請期待更多作品介紹。"}</p>
                         </div>
                         <div class="pt-8 border-t-2" style="border-color:#8b7355;">
-                            <h3 class="text-lg font-bold mb-4" style="font-family:'Noto Serif TC',serif; color:#5a4a3a;">分享此作品</h3>
+                            <h3 class="text-lg font-bold mb-4" style="color:#5a4a3a;">分享此作品</h3>
                             <div class="flex gap-4">
                                 <button onclick="shareWorkToFB('${w.title}', '${w.img1 || ''}')" class="px-4 py-2 rounded-sm" style="background:#1877f2; color:white; cursor:pointer;">Facebook</button>
                                 <button onclick="shareWorkToLINE('${w.title}')" class="px-4 py-2 rounded-sm" style="background:#00b900; color:white; cursor:pointer;">LINE</button>
@@ -397,10 +432,19 @@
             window.scrollTo(0,0);
         }
         
+        function shareWorkToFB(workTitle, workImgUrl) {
+            const url = getPageUrl();
+            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(workTitle)}`;
+            window.open(fbUrl, '_blank', 'width=600,height=400');
+        }
+        
+        function shareWorkToLINE(workTitle) {
+            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(workTitle + ' ' + getPageUrl())}`, '_blank');
+        }
+        
         function closeWorkDetail() {
             document.getElementById('main-content').style.display = 'block';
             document.getElementById('work-detail-container').style.display = 'none';
-            // 恢復主頁的 og:image 為 zzz.jpg
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage) {
                 ogImage.setAttribute('content', 'https://github.com/ccat4523/-/raw/main/images/zzz.jpg');
