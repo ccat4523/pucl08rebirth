@@ -22,19 +22,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Noto Sans TC', 'Noto Serif TC', sans-serif; }
+        
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); } 50% { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); } }
+        
         .animate-float { animation: float 5s ease-in-out infinite; }
         .animate-bounce { animation: bounce 2s infinite; }
-        .nav-glass { background: rgba(245, 241, 232, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
-        .work-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
-        .image-placeholder { background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); display: flex; align-items: center; justify-content: center; color: #8b7355; font-size: 14px; }
-        .share-btn { transition: all 0.2s ease; cursor: pointer; }
-        .share-btn:hover { transform: scale(1.05); }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
+        
+        /* 導航列美化 */
+        .nav-glass { 
+            background: rgba(245, 241, 232, 0.95); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 作品卡片美化 */
+        .work-card { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border: 1px solid rgba(139, 115, 85, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .work-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        
+        /* 圖片 hover 金色 overlay */
+        .work-card-img-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .work-card-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 115, 85, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .work-card:hover .work-card-img-container::after {
+            opacity: 1;
+        }
+        
+        /* 展覽資訊框 - 紙張紋理 */
+        .paper-texture {
+            background-image: radial-gradient(rgba(139, 115, 85, 0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
+            position: relative;
+        }
+        /* 浮水印書法字 */
+        .paper-texture::before {
+            content: '蛻';
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 80px;
+            font-family: 'Noto Serif TC', serif;
+            color: rgba(139, 115, 85, 0.06);
+            pointer-events: none;
+            z-index: 0;
+            font-weight: 700;
+        }
+        
+        .image-placeholder { 
+            background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #8b7355; 
+            font-size: 14px; 
+        }
+        
+        /* 按鈕美化 */
+        .share-btn { 
+            transition: all 0.2s ease; 
+            cursor: pointer; 
+        }
+        .share-btn:hover { 
+            transform: scale(1.05); 
+            filter: brightness(0.95);
+        }
+        .work-card button {
+            transition: all 0.2s ease;
+        }
+        .work-card button:hover {
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+        
+        /* 頁尾分隔線裝飾 */
+        .footer-decoration {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, #8b7355, #d4af37, transparent);
+            width: 60%;
+            margin: 0 auto 1.5rem auto;
+        }
+        
+        /* 手機端優化 */
         @media (max-width: 768px) {
-            .work-card h3 { font-size: 1rem; }
-            .work-card p, .work-card button { font-size: 0.75rem; }
+            .work-card h3 { font-size: 0.95rem; }
+            .work-card p, .work-card button { font-size: 0.7rem; }
+            .info-box-text { font-size: 0.9rem; }
+            .info-box-big { font-size: 1rem !important; }
+            .paper-texture::before { font-size: 50px; }
         }
     </style>
 </head>
@@ -90,36 +189,35 @@
         });
     </script>
 
-    <!-- ===== HERO SECTION (完整保留展覽資訊框) ===== -->
+    <!-- ===== HERO SECTION ===== -->
     <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 px-4" style="background: linear-gradient(180deg, rgba(212, 197, 176, 0.7) 0%, rgba(212, 197, 176, 0.5) 50%, rgba(212, 197, 176, 0.7) 100%);">
-        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl animate-glow">
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/hands_butterfly-82t2QECvULcYdbgUGVUnLa.webp" alt="手中的蝴蝶" class="w-full object-contain animate-float">
         </div>
         <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em;">蛻　生</h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 300; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
             
-            <!-- 展覽資訊框（完整保留） -->
-            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+            <!-- 展覽資訊框（美化版） -->
+            <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative paper-texture" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
                 <div class="absolute -top-3 -left-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
                 <div class="absolute -bottom-3 -right-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
-                <div class="space-y-6 text-center">
+                <div class="space-y-6 text-center relative z-10">
                     <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">展覽日期</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">2026年5月12日（二）– 5月14日（四）</p>
+                        <p style="color: #8b7355; font-weight: 600;">📅 展覽日期</p>
+                        <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">2026年5月12日（二）– 5月14日（四）</p>
                     </div>
                     <div class="pb-4 border-b-2 border-gray-200">
-                        <p style="color: #8b7355; font-weight: 600;">🕙 開放時間</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">09:00 – 16:00</p>
+                        <p style="color: #8b7355; font-weight: 600;">⏰ 開放時間</p>
+                        <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">09:00 – 16:00</p>
                     </div>
                     <div>
                         <p style="color: #8b7355; font-weight: 600;">📍 展覽地點</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">靜宜大學宜園餐廳樓上iDO培力基地</p> 
+                        <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">靜宜大學宜園餐廳樓上iDO培力基地</p> 
                     </div>
                     <div>
                         <p style="color: #8b7355; font-weight: 600;">🏫 展覽地址</p>
-                        <p style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
-
+                        <p class="info-box-big" style="color: #5a4a3a; font-size: 1.3rem; font-weight: 500;">433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
                     </div>
                 </div>
             </div>
@@ -156,6 +254,9 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
+        <!-- 頁尾裝飾分隔線 -->
+        <div class="footer-decoration"></div>
+        
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
                 <div class="flex items-center gap-3">
@@ -165,18 +266,18 @@
                 <a href="#" class="text-sm transition-colors hover:text-accent" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">靜宜大學中國文學系第八屆畢業成果展</a>
                 
                 <div class="flex items-center gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
 
                 <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
-                    <p><span style="color: #d4af37; font-weight: bold;">▹展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
-                    <p><span style="color: #d4af37; font-weight: bold;">🕙 開放時間</span> 09:00 – 16:00</p>
+                    <p><span style="color: #d4af37; font-weight: bold;">📅 展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
+                    <p><span style="color: #d4af37; font-weight: bold;">⏰ 開放時間</span> 09:00 – 16:00</p>
                     <p><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
-                    <p><span style="color: #d4af37; font-weight: bold;">　　地　　址：433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</span></p>
+                    <p><span style="color: #d4af37; font-weight: bold;">🏫 展覽地址</span> 433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.2);">
+            <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.15);">
                 <p class="text-xs text-right" style="font-family: 'Noto Sans TC', sans-serif; color: #999;">蛻生 - 靜宜大學中國文學系第八屆畢業成果展</p>
             </div>
         </div>
@@ -209,7 +310,7 @@
             if(!grid) return;
             grid.innerHTML = worksData.map(w => `
                 <div class="work-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="showWorkDetail(${w.id})">
-                    <div class="w-full h-48 overflow-hidden bg-amber-100">
+                    <div class="work-card-img-container w-full h-48 overflow-hidden bg-amber-100">
                         ${w.img1 ? `<img src="${w.img1}" alt="${w.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder w-full h-full flex items-center justify-center\'><span class=\'text-white text-sm px-4 text-center\'>📷 圖片載入失敗<br>${w.title}</span></div>'">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${w.title}</span></div>`}
                     </div>
                     <div class="p-4">
