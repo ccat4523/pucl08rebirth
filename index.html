@@ -11,47 +11,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Noto Sans TC', 'Noto Serif TC', sans-serif;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .animate-float {
-            animation: float 5s ease-in-out infinite;
-        }
-        .animate-bounce {
-            animation: bounce 2s infinite;
-        }
-        .nav-glass {
-            background: rgba(245, 241, 232, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .work-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .work-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-        }
-        .image-placeholder {
-            background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #8b7355;
-            font-size: 14px;
-        }
+        * { font-family: 'Noto Sans TC', 'Noto Serif TC', sans-serif; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-bounce { animation: bounce 2s infinite; }
+        .nav-glass { background: rgba(245, 241, 232, 0.95); backdrop-filter: blur(10px); }
+        .work-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
+        .image-placeholder { background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); display: flex; align-items: center; justify-content: center; color: #8b7355; font-size: 14px; }
     </style>
 </head>
-<body class="bg-gray-50" style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
+<body style="background: #e8dfd2; background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/taiwan_newspaper_simple_bg-iPydLff9wBGrCjJy6EC5j3.webp'); background-size: cover; background-attachment: fixed;">
 
-    <!-- Navbar -->
+    <!-- Navbar (保持不變) -->
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-16">
@@ -67,29 +40,18 @@
             </div>
         </div>
     </nav>
-
-    <style>
-        .nav-glass {
-            background: rgba(245, 241, 232, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-    </style>
-
     <script>
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('nav-glass');
-                navbar.classList.add('shadow-md');
+                navbar.classList.add('nav-glass', 'shadow-md');
             } else {
-                navbar.classList.remove('nav-glass');
-                navbar.classList.remove('shadow-md');
+                navbar.classList.remove('nav-glass', 'shadow-md');
             }
         });
     </script>
 
-    <!-- ===== HERO SECTION ===== -->
+    <!-- ===== HERO SECTION (保留展覽資訊框) ===== -->
     <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 px-4" style="background: linear-gradient(180deg, rgba(212, 197, 176, 0.7) 0%, rgba(212, 197, 176, 0.5) 50%, rgba(212, 197, 176, 0.7) 100%);">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663604108019/WWoiuccXVRycCjqYzzpk6j/hands_butterfly-82t2QECvULcYdbgUGVUnLa.webp" alt="手中的蝴蝶" class="w-full object-contain animate-float">
@@ -97,6 +59,8 @@
         <div class="relative z-10 flex flex-col items-center text-center mt-32 sm:mt-40">
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); letter-spacing: 0.15em;">蛻　生</h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-8" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; font-weight: 300; letter-spacing: 0.05em;">靜宜大學中國文學系第八屆畢業展覽</p>
+            
+            <!-- 主視覺的展覽資訊框 (保留) -->
             <div class="mt-8 p-8 sm:p-10 rounded-sm max-w-2xl relative" style="background: rgba(255, 255, 255, 0.95); border: 3px solid #8b7355; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
                 <div class="absolute -top-3 -left-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
                 <div class="absolute -bottom-3 -right-3 w-6 h-6" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355; transform: rotate(45deg);"></div>
@@ -143,7 +107,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER (新增展覽資訊區塊) ===== -->
     <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
@@ -152,14 +116,18 @@
                     <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a;">蛻生</span>
                 </div>
                 <a href="#home" class="text-sm transition-colors hover:text-accent" style="font-family: 'Noto Sans TC', sans-serif; color: #1a3a3a;">靜宜大學中國文學系第八屆畢業成果展</a>
-                <div class="space-y-1.5 text-sm" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
+                
+                <!-- 社群媒體圖示 -->
+                <div class="flex items-center gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+
+                <!-- 頁尾的展覽資訊區塊 (新增) -->
+                <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
                     <p><span style="color: #d4af37; font-weight: bold;">▹展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
                     <p><span style="color: #d4af37; font-weight: bold;">🕙 開放時間</span> 09:00 – 16:00</p>
                     <p><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
-                </div>
-                <div class="flex items-center gap-4 mt-2">
-                    <a href="https://www.facebook.com/profile.php?id=61587027196885" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: #1a3a3a;"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.2);">
@@ -169,7 +137,7 @@
     </footer>
 
     <script>
-        // 17 組作品資料
+        // 17 組作品資料 (已包含您提供的三組)
         const worksData = [
             { id: 1, workNumber: 1, title: "文以載道但載不動我模擬器", author: "張凱晴、賴安蓁、蔡妘姗", description: "", image1Url: "https://github.com/ccat4523/-/raw/main/images/a1.jpg", image2Url: "https://github.com/ccat4523/-/raw/main/images/a2.jpg" },
             { id: 2, workNumber: 2, title: "靜物微縮劇場!讓「思無邪」的婚戀穿越藩籬", author: "徐艾、蔡佳欣", description: "", image1Url: "https://github.com/ccat4523/-/raw/main/images/b1.png", image2Url: "https://github.com/ccat4523/-/raw/main/images/b2.jpg" },
@@ -190,17 +158,13 @@
             { id: 17, workNumber: 17, title: "第 17 組作品", author: "待補", description: "敬請期待", image1Url: null, image2Url: null }
         ];
 
-        // 顯示作品網格
         function renderWorks() {
             const grid = document.getElementById('works-grid');
             if (!grid) return;
             grid.innerHTML = worksData.map(work => `
                 <div class="work-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="showWorkDetail(${work.id})">
                     <div class="w-full h-48 overflow-hidden bg-amber-100">
-                        ${work.image1Url ? 
-                            `<img src="${work.image1Url}" alt="${work.title}" class="w-full h-full object-cover">` : 
-                            `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${work.title}</span></div>`
-                        }
+                        ${work.image1Url ? `<img src="${work.image1Url}" alt="${work.title}" class="w-full h-full object-cover">` : `<div class="image-placeholder w-full h-full flex items-center justify-center"><span class="text-white text-sm px-4 text-center">📷 圖片待補<br>${work.title}</span></div>`}
                     </div>
                     <div class="p-4">
                         <h3 class="text-lg font-bold text-gray-800 mb-1" style="font-family: 'Noto Serif TC', serif;">${work.title}</h3>
@@ -212,36 +176,23 @@
             `).join('');
         }
 
-        // 顯示作品詳細頁面
         function showWorkDetail(id) {
             const work = worksData.find(w => w.id === id);
             if (!work) return;
-            
-            // 隱藏主內容，顯示詳細頁面
             document.getElementById('main-content').style.display = 'none';
             const detailContainer = document.getElementById('work-detail-container');
             detailContainer.style.display = 'block';
-            
-            // 渲染詳細內容
             detailContainer.innerHTML = `
                 <section class="py-16 px-4" style="min-height: calc(100vh - 200px);">
                     <div class="max-w-3xl mx-auto p-8 rounded-sm" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355;">
-                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; text-decoration: none; cursor: pointer;">← 返回</button>
+                        <button onclick="closeWorkDetail()" class="inline-block mb-6 text-sm" style="font-family: 'Noto Sans TC', sans-serif; color: #8b7355; cursor: pointer;">← 返回</button>
                         <div class="mb-8">
                             <h1 class="text-3xl font-bold mb-2" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">${work.title}</h1>
                             <p class="text-lg" style="font-family: 'Noto Sans TC', sans-serif; color: #6b5d4f;">創作者：${work.author}</p>
                         </div>
                         <div class="mb-8 flex flex-col items-center gap-4">
-                            ${work.image1Url ? `
-                                <div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background: rgba(200, 180, 160, 0.3); border: 2px solid #8b7355;">
-                                    <img src="${work.image1Url}" alt="作品圖片 1" class="w-full h-auto object-cover">
-                                </div>
-                            ` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 1</div>'}
-                            ${work.image2Url ? `
-                                <div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background: rgba(200, 180, 160, 0.3); border: 2px solid #8b7355;">
-                                    <img src="${work.image2Url}" alt="作品圖片 2" class="w-full h-auto object-cover">
-                                </div>
-                            ` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 2</div>'}
+                            ${work.image1Url ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background: rgba(200, 180, 160, 0.3); border: 2px solid #8b7355;"><img src="${work.image1Url}" alt="作品圖片 1" class="w-full h-auto object-cover"></div>` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 1</div>'}
+                            ${work.image2Url ? `<div class="w-full max-w-2xl rounded-sm overflow-hidden" style="background: rgba(200, 180, 160, 0.3); border: 2px solid #8b7355;"><img src="${work.image2Url}" alt="作品圖片 2" class="w-full h-auto object-cover"></div>` : '<div class="image-placeholder w-full h-64 flex items-center justify-center">暫無圖片 2</div>'}
                         </div>
                         <div class="mb-8">
                             <h3 class="text-xl font-bold mb-4" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">作品介紹</h3>
@@ -249,7 +200,7 @@
                         </div>
                         <div class="pt-8 border-t-2" style="border-color: #8b7355;">
                             <h3 class="text-lg font-bold mb-4" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">分享此作品</h3>
-                            <div class="flex gap-4 items-center justify-start flex-wrap">
+                            <div class="flex gap-4 items-center">
                                 <button onclick="window.open('https://line.me/R/msg/text/?${encodeURIComponent(work.title + ' ' + window.location.href.split('?')[0])}', '_blank')" class="flex items-center gap-2 px-4 py-2 rounded-sm" style="background: #00b900; color: white; cursor: pointer;">LINE</button>
                                 <button onclick="navigator.clipboard.writeText(window.location.href.split('?')[0]); alert('連結已複製！')" class="flex items-center gap-2 px-4 py-2 rounded-sm" style="background: #8b7355; color: white; cursor: pointer;">複製連結</button>
                             </div>
@@ -257,8 +208,6 @@
                     </div>
                 </section>
             `;
-            
-            // 滾動到頂部
             window.scrollTo(0, 0);
         }
         
@@ -267,34 +216,22 @@
             document.getElementById('work-detail-container').style.display = 'none';
         }
         
-        // 頁面載入
         document.addEventListener('DOMContentLoaded', () => {
             renderWorks();
+            // 重新組織 DOM 結構，讓主內容能被隱藏
+            const mainDiv = document.getElementById('main-content');
+            const hero = document.getElementById('home');
+            const info = document.getElementById('info');
+            const works = document.getElementById('works');
+            if (mainDiv && hero && info && works) {
+                mainDiv.appendChild(hero);
+                mainDiv.appendChild(info);
+                mainDiv.appendChild(works);
+            }
         });
     </script>
 
-    <!-- 主內容容器 -->
-    <div id="main-content">
-        <!-- 內容會由上方 section 提供 -->
-    </div>
+    <div id="main-content"></div>
     <div id="work-detail-container" style="display: none;"></div>
-
-    <!-- 移動主內容到正確位置 -->
-    <script>
-        // 重新組織 DOM 結構
-        const mainDiv = document.getElementById('main-content');
-        const hero = document.getElementById('home');
-        const info = document.getElementById('info');
-        const works = document.getElementById('works');
-        if (mainDiv && hero && info && works) {
-            mainDiv.appendChild(hero.parentNode.removeChild(hero));
-            mainDiv.appendChild(info.parentNode.removeChild(info));
-            mainDiv.appendChild(works.parentNode.removeChild(works));
-        }
-        // 重新觸發渲染
-        setTimeout(() => {
-            if (typeof renderWorks === 'function') renderWorks();
-        }, 100);
-    </script>
 </body>
 </html>
