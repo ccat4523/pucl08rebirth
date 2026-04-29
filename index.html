@@ -8,6 +8,8 @@
     <meta property="og:title" content="蛻生——靜宜大學中國文學系第八屆畢業展覽">
     <meta property="og:description" content="17組同學、17種創作語彙，各自以不同的姿態，訴說屬於我們的故事。">
     <meta property="og:type" content="website">
+    <!-- 瀏覽器分頁小圖標 Favicon -->
+    <link rel="icon" type="image/png" href="images/sss.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -21,30 +23,11 @@
         .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
         .image-placeholder { background: linear-gradient(135deg, #d4c5b0 0%, #c4b5a0 100%); display: flex; align-items: center; justify-content: center; color: #8b7355; font-size: 14px; }
         .video-card {
-            flex: 0 0 280px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .video-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* 響應式調整 */
-        @media (max-width: 768px) {
-            .video-card {
-                flex: 0 0 260px;
-            }
-        }
-        @media (max-width: 480px) {
-            .video-card {
-                flex: 0 0 240px;
-            }
         }
         .share-btn {
             transition: all 0.2s ease;
@@ -74,7 +57,7 @@
                         <button onclick="copyPageLink()" class="share-btn px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1" style="background: #8b7355; color: white;">複製連結</button>
                     </div>
                 </div>
-                <!-- 手機版漢堡選單 -->
+                <!-- 手機版分享按鈕 + 漢堡選單 -->
                 <div class="md:hidden flex items-center gap-2">
                     <button onclick="shareToLINE()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #00b900; color: white;">LINE</button>
                     <button onclick="copyPageLink()" class="share-btn px-2 py-1 rounded-md text-xs font-medium" style="background: #8b7355; color: white;">複製</button>
@@ -174,125 +157,19 @@
         </div>
     </section>
 
-    <!-- ===== VIDEO CAROUSEL SECTION (橫向滾動影片區 + 滑鼠滾輪控制) ===== -->
-    <section id="videos" class="py-20 px-4" style="background: linear-gradient(180deg, rgba(232, 223, 210, 0.6) 0%, rgba(232, 223, 210, 0.8) 100%);">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" style="font-family: 'Noto Serif TC', serif; color: #5a4a3a;">宣傳影片</h2>
-            <div id="videoCarousel" class="overflow-x-auto scrollbar-hide pb-4" style="cursor: grab;">
-                <div class="flex gap-6" style="min-width: min-content;">
-                    <!-- 影片 1 -->
-                    <div class="video-card flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #8b7355;">
-                        <div class="aspect-video bg-amber-100 flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2" style="color: #8b7355;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-sm" style="color: #8b7355;">敬請期待</p>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800" style="font-family: 'Noto Serif TC', serif;">宣傳影片 1</h3>
-                            <p class="text-sm text-gray-500 mt-1">即將登場</p>
-                        </div>
-                    </div>
-                    <!-- 影片 2 -->
-                    <div class="video-card flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #8b7355;">
-                        <div class="aspect-video bg-amber-100 flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2" style="color: #8b7355;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-sm" style="color: #8b7355;">敬請期待</p>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800" style="font-family: 'Noto Serif TC', serif;">宣傳影片 2</h3>
-                            <p class="text-sm text-gray-500 mt-1">即將登場</p>
-                        </div>
-                    </div>
-                    <!-- 影片 3 -->
-                    <div class="video-card flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #8b7355;">
-                        <div class="aspect-video bg-amber-100 flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2" style="color: #8b7355;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-sm" style="color: #8b7355;">敬請期待</p>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800" style="font-family: 'Noto Serif TC', serif;">宣傳影片 3</h3>
-                            <p class="text-sm text-gray-500 mt-1">即將登場</p>
-                        </div>
-                    </div>
-                    <!-- 影片 4 -->
-                    <div class="video-card flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #8b7355;">
-                        <div class="aspect-video bg-amber-100 flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2" style="color: #8b7355;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-sm" style="color: #8b7355;">敬請期待</p>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800" style="font-family: 'Noto Serif TC', serif;">宣傳影片 4</h3>
-                            <p class="text-sm text-gray-500 mt-1">即將登場</p>
-                        </div>
-                    </div>
-                    <!-- 影片 5 -->
-                    <div class="video-card flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #8b7355;">
-                        <div class="aspect-video bg-amber-100 flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2" style="color: #8b7355;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-sm" style="color: #8b7355;">敬請期待</p>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800" style="font-family: 'Noto Serif TC', serif;">宣傳影片 5</h3>
-                            <p class="text-sm text-gray-500 mt-1">即將登場</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== 第一組作品下方橫式影片 ===== -->
+<section id="work1-video" class="py-8 px-4" style="background: linear-gradient(180deg, rgba(232, 223, 210, 0.6) 0%, rgba(232, 223, 210, 0.8) 100%);">
+    <div class="max-w-3xl mx-auto">
+        <div class="video-card bg-white rounded-lg overflow-hidden shadow-lg" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #8b7355;">
+            <div class="aspect-video">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/1HFi3CqULjU" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="p-4 text-center">
+                <h3 class="font-bold text-xl text-gray-800" style="font-family: 'Noto Serif TC', serif;">文以載道但載不動我模擬器 - 製作過程</h3>
             </div>
         </div>
-    </section>
-
-    <script>
-        // 橫向滾動 + 滑鼠滾輪控制
-        const carousel = document.getElementById('videoCarousel');
-        if (carousel) {
-            // 滑鼠滾輪控制水平滾動
-            carousel.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                carousel.scrollLeft += e.deltaY;
-            });
-            
-            // 拖曳滾動（可選）
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            
-            carousel.addEventListener('mousedown', (e) => {
-                isDown = true;
-                carousel.style.cursor = 'grabbing';
-                startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            
-            carousel.addEventListener('mouseleave', () => {
-                isDown = false;
-                carousel.style.cursor = 'grab';
-            });
-            
-            carousel.addEventListener('mouseup', () => {
-                isDown = false;
-                carousel.style.cursor = 'grab';
-            });
-            
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - carousel.offsetLeft;
-                const walk = (x - startX) * 1.5;
-                carousel.scrollLeft = scrollLeft - walk;
-            });
-            
-            carousel.style.cursor = 'grab';
-        }
-    </script>
+    </div>
+</section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="border-t py-12" style="background: #f5f1e8; border-top: 2px solid #d4af37;">
@@ -408,12 +285,14 @@
             const hero = document.getElementById('home');
             const info = document.getElementById('info');
             const works = document.getElementById('works');
-            const videos = document.getElementById('videos');
-            if (mainDiv && hero && info && works && videos) {
+            const work1Video = document.getElementById('work1-video');
+            const promoVideo = document.getElementById('promo-video');
+            if (mainDiv && hero && info && works && work1Video && promoVideo) {
                 mainDiv.appendChild(hero);
                 mainDiv.appendChild(info);
                 mainDiv.appendChild(works);
-                mainDiv.appendChild(videos);
+                mainDiv.appendChild(work1Video);
+                mainDiv.appendChild(promoVideo);
             }
         });
     </script>
