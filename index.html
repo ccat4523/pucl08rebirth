@@ -9,9 +9,9 @@
     <!-- Open Graph Meta Tags - 分享預覽 -->
     <meta property="og:title" content="蛻生——靜宜大學中國文學系第八屆畢業展覽">
     <meta property="og:description" content="靜宜大學中國文學系第八屆畢業展覽「蛻生」，17組同學、17種創作語彙。">
-    <meta property="og:url" content="https://ccat4523.github.io/-/">
+    <meta property="og:url" content="https://ccat4523.github.io/pucl08rebirth/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://github.com/ccat4523/-/raw/main/images/zzz.jpg">
+    <meta property="og:image" content="https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
@@ -244,6 +244,16 @@
             navigator.clipboard.writeText(getPageUrl()).then(() => alert('連結已複製！')).catch(() => prompt('請手動複製連結', getPageUrl())); 
         }
         
+        function shareWorkToFB(workTitle, workImgUrl) {
+            const url = getPageUrl();
+            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(workTitle)}`;
+            window.open(fbUrl, '_blank', 'width=600,height=400');
+        }
+        
+        function shareWorkToLINE(workTitle) {
+            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(workTitle + ' ' + getPageUrl())}`, '_blank');
+        }
+        
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) nav.classList.add('nav-glass', 'shadow-md');
@@ -324,7 +334,6 @@
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex flex-col items-start gap-6">
                 <div class="flex items-center gap-3">
-                    <!-- 頁尾 Logo 已改成 sss.png -->
                     <img src="images/sss.png" alt="蛻生" class="w-12 h-12 object-contain">
                     <span class="text-lg font-bold" style="font-family: 'Noto Serif TC', serif; color: #1a3a3a; font-weight: 700;">蛻生</span>
                 </div>
@@ -336,11 +345,20 @@
                     <a href="https://www.instagram.com/pucl08rebirth/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
 
-                <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Sans TC', sans-serif; color: #555;">
+                <div class="space-y-1.5 text-sm pt-2" style="font-family: 'Noto Serif TC', serif; color: #555;">
                     <p><span style="color: #d4af37; font-weight: bold;">📅 展覽日期</span> 2026年5月12日（二）– 5月14日（四）</p>
                     <p><span style="color: #d4af37; font-weight: bold;">⏰ 開放時間</span> 09:00 – 16:00</p>
                     <p><span style="color: #d4af37; font-weight: bold;">📍 展覽地點</span> 靜宜大學宜園餐廳樓上iDO培力基地</p>
-                    <p><span style="color: #d4af37; font-weight: bold;">🏫 展覽地址</span> 433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</p>
+                    <p style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                        <span style="color: #d4af37; font-weight: bold;">🏫 展覽地址</span>
+                        <span>433303臺中市沙鹿區臺灣大道七段200號(宜園餐廳3樓)</span>
+                        <a href="https://maps.app.goo.gl/YDYTQpH9Wb7Ly6En8" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; color: #4285f4; text-decoration: none; font-weight: 500;" class="hover:underline">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: #4285f4;">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            地圖
+                        </a>
+                    </p>
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t" style="border-top: 1px solid rgba(212, 175, 55, 0.15);">
@@ -350,7 +368,7 @@
     </footer>
 
     <script>
-        const imgBase = 'https://github.com/ccat4523/-/raw/main/images/';
+        const imgBase = 'https://github.com/ccat4523/pucl08rebirth/raw/main/images/';
         const worksData = [
             { id:1, no:1, title:"文以載道但載不動我模擬器", author:"張凱晴、賴安蓁、蔡妘姗", desc:"　　我們的作品是結合了大富翁的隨機性與RPG元素的複合式桌遊。以靜宜大學為地理藍本，將中國文學系的學科與校園生活轉化為具象的遊戲機制，讓玩家跑過一圈如同度過一年，旨在讓玩家透過遊玩的形式，深度體驗一名中文系學生完整的大學四年生活。\n\n　　遊戲設計強調情境化與代入感，將校園地標與學術課程緊密融入地圖與事件。玩家將化身為中文系新生，在四年的遊戲進程中，不僅需要努力獲取學分，更必須在現實又殘酷的機會、命運中做出關鍵決策。每張卡牌上都有獨屬於自己的小故事，將最真實的大學生生活，提煉成有趣的冒險，使枯燥的日常轉化為充滿驚喜的挑戰。\n\n　　本作品兼具學系推廣與大眾娛樂之雙重功能，不僅希望能引發校內師生的共鳴，也讓校外大眾得以透過輕鬆趣味的視角，更加理解中文系。\n\n　　文以載道，同時也承載了我們的青春。", img1:`${imgBase}a1.jpg`, img2:`${imgBase}a2.jpg`, video:"https://www.youtube.com/embed/1HFi3CqULjU" },
             { id:2, no:2, title:"靜物微縮劇場！讓「思無邪」的婚戀穿越藩籬", author:"徐艾、蔡佳欣", desc:"　　過去與現在鮮少有隔閡的一件事——從古至今皆談，有哀怨、有稱頌，這便是最容易「穿越藩籬」的事：婚戀。\n\n　　本作品選定四首《詩經》春季婚戀詩，分別為〈子衿〉、〈野有蔓草〉、〈關雎〉、〈桃夭〉。以微縮模型嘗試「穿越藩籬」，也可以理解為讓「物件說話」的一座「劇場」。\n\n　　我們從詩中選用關鍵詞句，來呈現場景、重要意象及「三對男女」，表達感情循序漸進的三階段：單相思⇀相戀⇀結婚。\n\n　　從一而終的是，我們希望中文系所學的並不被認作「老硞硞 (lāu-khok-khok)」的東西。\n\n　　人生唯一一次在大學裡展出作品，同時首次「以中文專業接觸人群」，創造直觀的物件，使人感受得到質地、聲音；以看得見的實體，期許在這一次展覽中得掙破藩籬。", img1:`${imgBase}b1.png`, img2:`${imgBase}b2.jpg` },
@@ -432,22 +450,12 @@
             window.scrollTo(0,0);
         }
         
-        function shareWorkToFB(workTitle, workImgUrl) {
-            const url = getPageUrl();
-            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(workTitle)}`;
-            window.open(fbUrl, '_blank', 'width=600,height=400');
-        }
-        
-        function shareWorkToLINE(workTitle) {
-            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(workTitle + ' ' + getPageUrl())}`, '_blank');
-        }
-        
         function closeWorkDetail() {
             document.getElementById('main-content').style.display = 'block';
             document.getElementById('work-detail-container').style.display = 'none';
             const ogImage = document.querySelector('meta[property="og:image"]');
             if(ogImage) {
-                ogImage.setAttribute('content', 'https://github.com/ccat4523/-/raw/main/images/zzz.jpg');
+                ogImage.setAttribute('content', 'https://github.com/ccat4523/pucl08rebirth/raw/main/images/zzz.jpg');
             }
         }
         
